@@ -6,7 +6,7 @@ import {
 } from "../../util/element-creator/element-creator-types";
 import { TableView } from "./table/table-view";
 import { CssView } from "./css-view/css-view";
-import { HTMLView } from "./css-view/html-view";
+import { HTMLView } from "./html-view/html-view";
 
 const CSS_CLASSES = ["main"];
 const CSS_CLASSES_FIELDS = ["fields"];
