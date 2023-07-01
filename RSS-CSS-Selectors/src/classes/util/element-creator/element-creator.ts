@@ -12,7 +12,7 @@ export default class ElementCreator implements IElementCreator {
     this.createElement(params);
   }
 
-  public addInnerElement(innerElement: HTMLElement): void {
+  public addInnerElement(innerElement: ElementCreator | HTMLElement): void {
     if (!this.element) {
       throw new Error("new");
     }
