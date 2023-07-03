@@ -68,7 +68,7 @@ export class LevelsView {
             htmlCode.textContent = levelData.htmlCode;
             htmlView.setContent(htmlCode);
             tableView.setContent(levelData.codeForTable, levelData.help);
-            cssView.setContent("");
+            cssView.setContent(levelData.help);
           },
         },
       };
