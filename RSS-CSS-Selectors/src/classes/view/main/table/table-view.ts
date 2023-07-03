@@ -13,8 +13,8 @@ const CSS_CLASSES = ["table"];
 const CSS_CLASSES_TABLE_SURFACE = ["table__surface"];
 const CSS_CLASSES_TABLE_SIDE = ["table__side"];
 
-function myFn(content: ICodeForTable | null): HTMLElement {
-  if (content === null) return document.createElement("span");
+function myFn(content: ICodeForTable | null): HTMLElement | string {
+  if (content === null) return "";
   const key = Object.keys(content);
   let newTag: HTMLElement = document.createElement("div");
   if (key[0] === "bread") {
@@ -107,7 +107,10 @@ export class TableView {
       element.firstElementChild.remove();
     }
     content.forEach((item: ICodeForTable) => {
-      this.tableSurface?.addInnerElement(myFn(item));
+      const itemElement = myFn(item);
+      if (typeof itemElement !== "string") {
+        this.tableSurface?.addInnerElement(itemElement);
+      }
     });
     if (element) {
       const rightSelectedElements = element.querySelectorAll(
