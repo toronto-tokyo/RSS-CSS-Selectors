@@ -31,6 +31,7 @@ export class InputLineView {
     this.inputFieldElement = null;
     this.levelRightAnswer = "";
     this.configureView();
+    this.activateEnterFromKeyBoard();
   }
 
   public getElement(): HTMLElement | null {
@@ -72,34 +73,46 @@ export class InputLineView {
       callback: {
         event: "click",
         callback: () => {
-          const tableElement = this.table.getTableSurface();
-          if (!tableElement) {
-            throw new Error();
-          }
-          const input = this.inputFieldElement as HTMLInputElement;
-          const inputValue = input.value;
-          const rightSelector = this.levelRightAnswer;
-          if (input.value.length && rightSelector) {
-            const userSelectedElements = tableElement.querySelectorAll(
-              `${inputValue}`
-            );
-            const rightSelectedElements = tableElement.querySelectorAll(
-              `${rightSelector}`
-            );
-            const a = Array.from(userSelectedElements);
-            const b = Array.from(rightSelectedElements);
-            if (a.length !== b.length) alert(false);
-            else {
-              const checkedArr = a.filter((el) => b.includes(el));
-              if (checkedArr.length === a.length) alert(true);
-              else alert(false);
-            }
-          }
+          this.checkSelector();
         },
       },
     };
 
     const inputField = new ElementCreator(inputFieldParams);
     this.element.addInnerElement(inputField);
+  }
+
+  private checkSelector(): void {
+    const tableElement = this.table.getTableSurface();
+    if (!tableElement) {
+      throw new Error();
+    }
+    const input = this.inputFieldElement as HTMLInputElement;
+    const inputValue = input.value;
+    const rightSelector = this.levelRightAnswer;
+    if (input.value.length && rightSelector) {
+      const userSelectedElements = tableElement.querySelectorAll(
+        `${inputValue}`
+      );
+      const rightSelectedElements = tableElement.querySelectorAll(
+        `${rightSelector}`
+      );
+      const a = Array.from(userSelectedElements);
+      const b = Array.from(rightSelectedElements);
+      if (a.length !== b.length) alert(false);
+      else {
+        const checkedArr = a.filter((el) => b.includes(el));
+        if (checkedArr.length === a.length) alert(true);
+        else alert(false);
+      }
+    }
+  }
+
+  private activateEnterFromKeyBoard(): void {
+    window.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        this.checkSelector();
+      }
+    });
   }
 }
