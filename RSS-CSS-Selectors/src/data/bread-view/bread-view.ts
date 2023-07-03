@@ -15,7 +15,7 @@ export class BreadView extends HTMLElement {
     elementClass: string | undefined,
     elementId: string | undefined
   ): void {
-    this.style.background = `url(${imageLink}) 50%/cover no-repeat`;
+    this.style.background = `url(${imageLink}) 50%/contain no-repeat`;
     this.style.width = "100px";
     this.style.height = "100px";
     this.style.display = "flex";
