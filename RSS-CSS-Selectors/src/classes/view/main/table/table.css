@@ -10,6 +10,9 @@
   height: 150px;
   transform: rotateX(20deg);
   transform-origin: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .table__side {

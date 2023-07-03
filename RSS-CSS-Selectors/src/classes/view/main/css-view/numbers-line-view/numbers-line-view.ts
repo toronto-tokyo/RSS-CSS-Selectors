@@ -6,7 +6,7 @@ import {
 } from "../../../../util/element-creator/element-creator-types";
 
 const CSS_CLASSES_CSS_NUMBERS_LINE = ["view__numbers-line"];
-const LINES_COUNT = 10;
+const LINES_COUNT = 15;
 
 export class NumbersLineView {
   private element: IElementCreator;

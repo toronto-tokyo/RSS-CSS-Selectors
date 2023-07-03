@@ -6,6 +6,7 @@ import {
 } from "../../../util/element-creator/element-creator-types";
 import { NumbersLineView } from "./numbers-line-view/numbers-line-view";
 import { InputLineView } from "./input-line-view/input-line-view";
+import { TableView } from "../table/table-view";
 
 const CSS_CLASSES = ["view"];
 const CSS_CLASSES_CSS_TOP_LINE = ["view__top-line"];
@@ -17,7 +18,10 @@ const CSS_CLASSES_CSS_CONTENT = ["view__content"];
 export class CssView {
   private element: IElementCreator;
 
-  constructor() {
+  private inputLine: InputLineView | null;
+
+  constructor(private table: TableView) {
+    this.inputLine = null;
     const cssViewParam: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES,
@@ -92,12 +96,17 @@ export class CssView {
       contentWrap.addInnerElement(numberLineElement);
     }
 
-    const inputLine = new InputLineView();
+    const inputLine = new InputLineView(this.table);
+    this.inputLine = inputLine;
     const inputLineElement = inputLine.getElement();
     if (inputLineElement) {
       content.addInnerElement(inputLineElement);
     }
     contentWrap.addInnerElement(content);
     this.element.addInnerElement(contentWrap);
+  }
+
+  public setContent(content: string): void {
+    this.inputLine?.setLevelAnswer(content);
   }
 }

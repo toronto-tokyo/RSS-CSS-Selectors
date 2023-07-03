@@ -16,7 +16,10 @@ const CSS_CLASSES_CSS_CONTENT = ["view__content"];
 export class HTMLView {
   private element: IElementCreator;
 
+  private contentField: IElementCreator | null;
+
   constructor() {
+    this.contentField = null;
     const htmlViewParam: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES,
@@ -84,7 +87,7 @@ export class HTMLView {
       callback: null,
     };
     const content = new ElementCreator(contentParams);
-
+    this.contentField = content;
     const numbersLine = new NumbersLineView();
     const numberLineElement = numbersLine.getElement();
     if (numberLineElement) {
@@ -92,5 +95,23 @@ export class HTMLView {
     }
     contentWrap.addInnerElement(content);
     this.element.addInnerElement(contentWrap);
+  }
+
+  public setContent(content: IElementCreator | HTMLElement): void {
+    if (!this.contentField) {
+      throw new Error();
+    }
+    const element = this.contentField.getElement();
+    while (element?.firstElementChild) {
+      element.firstElementChild.remove();
+    }
+    if (content instanceof ElementCreator) {
+      const contentElement = content.getElement();
+      if (contentElement) {
+        this.contentField?.addInnerElement(contentElement);
+      }
+    } else {
+      this.contentField?.addInnerElement(content);
+    }
   }
 }

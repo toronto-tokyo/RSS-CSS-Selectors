@@ -9,6 +9,7 @@ import { CssView } from "./css-view/css-view";
 import { HTMLView } from "./html-view/html-view";
 
 const CSS_CLASSES = ["main"];
+const CSS_CLASSES_CONTENT_WRAPPER = ["main__wrapper"];
 const CSS_CLASSES_FIELDS = ["fields"];
 
 export class MainView {
@@ -33,7 +34,6 @@ export class MainView {
   private configureView(): void {
     const table = new TableView();
     const tableElement = table.getElement();
-
     const fieldsParams: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES_FIELDS,
@@ -42,20 +42,35 @@ export class MainView {
     };
     const fields = new ElementCreator(fieldsParams);
     const fieldsElement = fields.getElement();
-
-    const cssView = new CssView();
+    const cssView = new CssView(table);
     const cssViewElement = cssView.getElement();
     const htmlView = new HTMLView();
     const htmlViewElement = htmlView.getElement();
-
     if (cssViewElement && htmlViewElement) {
       fields.addInnerElement(cssViewElement);
       fields.addInnerElement(htmlViewElement);
     }
-
-    if (tableElement && fieldsElement) {
-      this.element.addInnerElement(tableElement);
-      this.element.addInnerElement(fieldsElement);
+    const contentWrapperParams: IElementCreatorParam = {
+      tag: "div",
+      cssClasses: CSS_CLASSES_CONTENT_WRAPPER,
+      textContent: "",
+      callback: null,
+    };
+    const contentWrapper = new ElementCreator(contentWrapperParams);
+    const contentWrapperElement = contentWrapper.getElement();
+    if (contentWrapper && tableElement && fieldsElement) {
+      contentWrapper.addInnerElement(tableElement);
+      contentWrapper.addInnerElement(fieldsElement);
+    }
+    if (contentWrapperElement) {
+      this.element.addInnerElement(contentWrapperElement);
     }
   }
 }
+
+// const levelsView = new LevelsView(table, cssView, htmlView);
+// const levelsViewElement = levelsView.getElement();
+// if (contentWrapperElement && levelsViewElement) {
+//   this.element.addInnerElement(contentWrapperElement);
+//   this.element.addInnerElement(levelsViewElement);
+// }

@@ -2,6 +2,14 @@
   background-color: rgba(16, 189, 100, 0.744);
 } */
 
+.main {
+  display: flex;
+}
+
+.main__wrapper{
+  flex: 0 1 100%
+}
+
 .fields {
   width: 90%;
   margin: 0 auto;
