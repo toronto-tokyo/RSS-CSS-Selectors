@@ -95,7 +95,10 @@ export class TableView {
     this.element.addInnerElement(tableSide);
   }
 
-  public setContent(content: ICodeForTable[]): void {
+  public setContent(
+    content: ICodeForTable[],
+    targetElementSelector: string
+  ): void {
     if (!this.tableSurface) {
       throw new Error();
     }
@@ -106,25 +109,15 @@ export class TableView {
     content.forEach((item: ICodeForTable) => {
       this.tableSurface?.addInnerElement(myFn(item));
     });
+    if (element) {
+      const rightSelectedElements = element.querySelectorAll(
+        `${targetElementSelector}`
+      );
+      const keys = Object.keys(rightSelectedElements);
+      keys.forEach((key): void => {
+        const htmlElement = rightSelectedElements[+key] as HTMLElement;
+        htmlElement.dataset.class = "target";
+      });
+    }
   }
 }
-
-/*
-const myObj = [
-  {bread: null}, 
-  {bread: [
-    {cheese: [
-      { ham: null}
-      ]
-    }
-    ]
-  }
-]
-*/
-
-// const bread: HTMLElement = new BreadView();
-// const cheese: HTMLElement = new CheeseView();
-// const ham: HTMLElement = new HamView();
-// bread.append(cheese);
-// cheese.append(ham);
-// this.tableSurface.addInnerElement(bread);

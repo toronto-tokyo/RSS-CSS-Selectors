@@ -42,3 +42,37 @@
 .table__side::after{
   right: 40px;
 }
+
+bread-slice[data-class="target"],
+cheese-slice[data-class="target"],
+ham-slice[data-class="target"] {
+  position: relative;
+  animation-name: circle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transform: rotate(0deg);
+  transform-origin: center bottom;
+}
+
+@keyframes circle {
+  from {
+    transform: rotate(0deg);
+  }
+
+  25%{
+    transform: rotate(-15deg);
+  }
+
+  50%{
+    transform: rotate(0deg);
+  }
+  
+  75%{
+    transform: rotate(15deg);
+  }
+  
+  100%{
+    transform: rotate(0deg);
+  }
+}
