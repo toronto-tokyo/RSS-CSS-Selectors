@@ -97,7 +97,7 @@ export class HTMLView {
     this.element.addInnerElement(contentWrap);
   }
 
-  public setContent(content: IElementCreator | HTMLElement): void {
+  public setContent(content: string): void {
     if (!this.contentField) {
       throw new Error();
     }
@@ -105,13 +105,9 @@ export class HTMLView {
     while (element?.firstElementChild) {
       element.firstElementChild.remove();
     }
-    if (content instanceof ElementCreator) {
-      const contentElement = content.getElement();
-      if (contentElement) {
-        this.contentField?.addInnerElement(contentElement);
-      }
-    } else {
-      this.contentField?.addInnerElement(content);
-    }
+    const htmlCode = document.createElement("pre");
+    htmlCode.className = "html-code";
+    htmlCode.textContent = content;
+    this.contentField?.addInnerElement(htmlCode);
   }
 }
