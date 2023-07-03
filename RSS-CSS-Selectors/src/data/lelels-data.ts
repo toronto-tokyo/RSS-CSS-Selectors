@@ -18,24 +18,29 @@ export const LEVELS_DATA: ILevel[] = [
     help: ".target",
     htmlCode: `<div class="table">
   <bread-slice></bread-slice>
-  <cheese-slice></cheese-slice>
+  <cheese-slice class="target"></cheese-slice>
   <bread-slice>
-    <cheese-slice class="target">
+    <cheese-slice>
       <ham-slice></ham-slice>
     </cheese-slice>
   </bread-slice>
 </div>`,
     codeForTable: [
       { bread: { selectors: null, next: null } },
-      { cheese: { selectors: null, next: null } },
+      {
+        cheese: {
+          selectors: {
+            elementClass: "target",
+          },
+          next: null,
+        },
+      },
       {
         bread: {
           selectors: null,
           next: {
             cheese: {
-              selectors: {
-                elementClass: "target",
-              },
+              selectors: null,
               next: {
                 ham: {
                   selectors: null,
