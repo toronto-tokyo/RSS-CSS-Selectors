@@ -1,0 +1,9 @@
+.levels-view {
+  background-color: rgba(128, 64, 48, 0.7);
+  flex: 20%;
+}
+
+.html-code {
+  line-height: 18.4px;
+  font-weight: 600;
+}

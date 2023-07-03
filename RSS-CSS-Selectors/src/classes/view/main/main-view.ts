@@ -7,6 +7,7 @@ import {
 import { TableView } from "./table/table-view";
 import { CssView } from "./css-view/css-view";
 import { HTMLView } from "./html-view/html-view";
+import { LevelsView } from "./levels-view/level-view";
 
 const CSS_CLASSES = ["main"];
 const CSS_CLASSES_CONTENT_WRAPPER = ["main__wrapper"];
@@ -62,15 +63,11 @@ export class MainView {
       contentWrapper.addInnerElement(tableElement);
       contentWrapper.addInnerElement(fieldsElement);
     }
-    if (contentWrapperElement) {
+    const levelsView = new LevelsView(table, cssView, htmlView);
+    const levelsViewElement = levelsView.getElement();
+    if (contentWrapperElement && levelsViewElement) {
       this.element.addInnerElement(contentWrapperElement);
+      this.element.addInnerElement(levelsViewElement);
     }
   }
 }
-
-// const levelsView = new LevelsView(table, cssView, htmlView);
-// const levelsViewElement = levelsView.getElement();
-// if (contentWrapperElement && levelsViewElement) {
-//   this.element.addInnerElement(contentWrapperElement);
-//   this.element.addInnerElement(levelsViewElement);
-// }
