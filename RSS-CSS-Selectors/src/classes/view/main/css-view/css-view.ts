@@ -20,6 +20,8 @@ export class CssView {
 
   private inputLine: InputLineView | null;
 
+  private helpAnswer: string;
+
   constructor(private table: TableView) {
     this.inputLine = null;
     const cssViewParam: IElementCreatorParam = {
@@ -30,7 +32,9 @@ export class CssView {
     };
 
     this.element = new ElementCreator(cssViewParam);
+    this.helpAnswer = "";
     this.configureView();
+    this.createHelpButton();
   }
 
   public getElement(): HTMLElement | null {
@@ -102,11 +106,27 @@ export class CssView {
     if (inputLineElement) {
       content.addInnerElement(inputLineElement);
     }
+    content.addInnerElement(this.createHelpButton());
     contentWrap.addInnerElement(content);
     this.element.addInnerElement(contentWrap);
   }
 
   public setContent(content: string): void {
+    this.helpAnswer = content;
     this.inputLine?.setLevelAnswer(content);
+  }
+
+  private createHelpButton(): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.className = "help-button";
+    button.textContent = "Help";
+    button.addEventListener("click", () => {
+      const inputLineElement =
+        this.inputLine?.getInputElement() as HTMLInputElement;
+      if (inputLineElement) {
+        inputLineElement.value = this.helpAnswer;
+      }
+    });
+    return button;
   }
 }

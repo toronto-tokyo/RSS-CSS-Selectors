@@ -38,6 +38,13 @@ export class InputLineView {
     return this.element.getElement();
   }
 
+  public getInputElement(): HTMLElement | null {
+    if (this.inputFieldElement) {
+      return this.inputFieldElement;
+    }
+    return null;
+  }
+
   public setLevelAnswer(value: string): void {
     this.levelRightAnswer = value;
   }
