@@ -6,7 +6,7 @@ import {
 } from "../../../util/element-creator/element-creator-types";
 import { NumbersLineView } from "../css-view/numbers-line-view/numbers-line-view";
 
-const CSS_CLASSES = ["view"];
+const CSS_CLASSES = ["view", "html-view"];
 const CSS_CLASSES_CSS_TOP_LINE = ["view__top-line"];
 const CSS_CLASSES_CSS_TOP_LINE_TITLE = ["view__title"];
 const CSS_CLASSES_CSS_TOP_LINE_DESCRIPTION = ["view__description"];

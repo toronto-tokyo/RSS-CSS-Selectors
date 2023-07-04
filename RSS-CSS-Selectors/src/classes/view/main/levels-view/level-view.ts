@@ -19,6 +19,8 @@ export class LevelsView {
 
   private linkElements: IElementCreator[];
 
+  private levelRightAnswer: string;
+
   constructor(
     private tableView: TableView,
     private cssView: CssView,
@@ -38,6 +40,7 @@ export class LevelsView {
     };
     this.element = new ElementCreator(levelsViewParam);
     this.linkElements = [];
+    this.levelRightAnswer = "";
     this.configureView(tableView, cssView, htmlView);
     this.setSelectedLevelAfterLoad();
   }
@@ -55,12 +58,116 @@ export class LevelsView {
       const targetLinkElement = targetLinkCreator?.getElement();
       targetLinkElement?.classList.add("selected");
       this.htmlView.setContent(LEVELS_DATA[+loadedIndex].htmlCode);
+      this.levelRightAnswer = LEVELS_DATA[+loadedIndex].help;
       this.cssView.setContent(LEVELS_DATA[+loadedIndex].help);
       this.tableView.setContent(
         LEVELS_DATA[+loadedIndex].codeForTable,
         LEVELS_DATA[+loadedIndex].help
       );
+      const enterButton = document.querySelector(
+        ".view__input-button"
+      ) as HTMLButtonElement;
+      enterButton.addEventListener("click", () => {
+        this.checkSelector();
+      });
     });
+    window.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        this.checkSelector();
+      }
+    });
+  }
+
+  private checkSelector(): void {
+    const tableElement = this.tableView.getTableSurface();
+    if (!tableElement) {
+      throw new Error();
+    }
+    const input = document.querySelector(
+      ".view__input-filed"
+    ) as HTMLInputElement;
+    const inputValue = input.value;
+    const rightSelector = this.levelRightAnswer;
+    if (input.value.length && rightSelector) {
+      const userSelectedElements = tableElement.querySelectorAll(
+        `${inputValue}`
+      );
+      const rightSelectedElements = tableElement.querySelectorAll(
+        `${rightSelector}`
+      );
+      const a = Array.from(userSelectedElements);
+      const b = Array.from(rightSelectedElements);
+      const mainElement = document.querySelector("main") as HTMLElement;
+      const fieldsElements = document.querySelector(".fields") as HTMLElement;
+      const htmlView = document.querySelector(".html-view") as HTMLElement;
+      if (a.length !== b.length) {
+        mainElement.classList.add("wrong-answer__background");
+        fieldsElements.classList.add("wrong-answer__fields");
+      } else {
+        const checkedArr = a.filter((el) => b.includes(el));
+        if (checkedArr.length === a.length) {
+          mainElement.classList.add("right-answer__background");
+          htmlView.classList.add("html-view--active");
+
+          const index = state.getLevelIndex();
+          let newIndex = +index + 1;
+          if (newIndex >= LEVELS_DATA.length) {
+            newIndex = 0;
+            state.setLevelNameField(`${newIndex}`);
+            const targetLinkCreator = this.linkElements.find((el) => {
+              const element = el.getElement();
+              if (!element) {
+                throw new Error();
+              }
+              return element.dataset.index === `${newIndex}`;
+            });
+            const targetLinkElement =
+              targetLinkCreator?.getElement() as HTMLDivElement;
+            this.setSelectedLink(targetLinkElement);
+            this.htmlView.setContent(LEVELS_DATA[newIndex].htmlCode);
+            this.levelRightAnswer = LEVELS_DATA[newIndex].help;
+            this.cssView.setContent(LEVELS_DATA[newIndex].help);
+            this.tableView.setContent(
+              LEVELS_DATA[newIndex].codeForTable,
+              LEVELS_DATA[newIndex].help
+            );
+            alert("You woon");
+          } else {
+            state.setLevelNameField(`${newIndex}`);
+            const targetLinkCreator = this.linkElements.find((el) => {
+              const element = el.getElement();
+              if (!element) {
+                throw new Error();
+              }
+              return element.dataset.index === `${newIndex}`;
+            });
+            const targetLinkElement =
+              targetLinkCreator?.getElement() as HTMLDivElement;
+            this.setSelectedLink(targetLinkElement);
+            this.htmlView.setContent(LEVELS_DATA[+newIndex].htmlCode);
+            this.levelRightAnswer = LEVELS_DATA[+newIndex].help;
+            this.cssView.setContent(LEVELS_DATA[+newIndex].help);
+            this.tableView.setContent(
+              LEVELS_DATA[+newIndex].codeForTable,
+              LEVELS_DATA[+newIndex].help
+            );
+          }
+        } else {
+          mainElement.classList.remove("wrong-answer__background");
+          fieldsElements.classList.add("wrong-answer__fields");
+        }
+      }
+      mainElement.addEventListener("animationend", () => {
+        mainElement.classList.remove("wrong-answer__background");
+        mainElement.classList.remove("right-answer__background");
+      });
+      fieldsElements.addEventListener("animationend", () => {
+        fieldsElements.classList.remove("wrong-answer__fields");
+      });
+      htmlView.addEventListener("animationend", () => {
+        htmlView.classList.remove("html-view--active");
+      });
+    }
   }
 
   private setSelectedLink(target: HTMLDivElement): void {
@@ -104,6 +211,7 @@ export class LevelsView {
           callback: () => {
             htmlView.setContent(levelData.htmlCode);
             tableView.setContent(levelData.codeForTable, levelData.help);
+            this.levelRightAnswer = levelData.help;
             cssView.setContent(levelData.help);
           },
         },

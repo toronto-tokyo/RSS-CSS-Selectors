@@ -31,7 +31,7 @@ export class InputLineView {
     this.inputFieldElement = null;
     this.levelRightAnswer = "";
     this.configureView();
-    this.activateEnterFromKeyBoard();
+    // this.activateEnterFromKeyBoard();
   }
 
   public getElement(): HTMLElement | null {
@@ -70,12 +70,13 @@ export class InputLineView {
       tag: "button",
       cssClasses: CSS_CLASSES_INPUT_BUTTON,
       textContent: "Enter",
-      callback: {
-        event: "click",
-        callback: () => {
-          this.checkSelector();
-        },
-      },
+      callback: null,
+      // callback: {
+      //   event: "click",
+      //   callback: () => {
+      //     this.checkSelector();
+      //   },
+      // },
     };
 
     const inputField = new ElementCreator(inputFieldParams);
@@ -99,12 +100,32 @@ export class InputLineView {
       );
       const a = Array.from(userSelectedElements);
       const b = Array.from(rightSelectedElements);
-      if (a.length !== b.length) alert(false);
-      else {
+      const mainElement = document.querySelector("main") as HTMLElement;
+      const fieldsElements = document.querySelector(".fields") as HTMLElement;
+      const htmlView = document.querySelector(".html-view") as HTMLElement;
+      if (a.length !== b.length) {
+        mainElement.classList.add("wrong-answer__background");
+        fieldsElements.classList.add("wrong-answer__fields");
+      } else {
         const checkedArr = a.filter((el) => b.includes(el));
-        if (checkedArr.length === a.length) alert(true);
-        else alert(false);
+        if (checkedArr.length === a.length) {
+          mainElement.classList.add("right-answer__background");
+          htmlView.classList.add("html-view--active");
+        } else {
+          mainElement.classList.remove("wrong-answer__background");
+          fieldsElements.classList.add("wrong-answer__fields");
+        }
       }
+      mainElement.addEventListener("animationend", () => {
+        mainElement.classList.remove("wrong-answer__background");
+        mainElement.classList.remove("right-answer__background");
+      });
+      fieldsElements.addEventListener("animationend", () => {
+        fieldsElements.classList.remove("wrong-answer__fields");
+      });
+      htmlView.addEventListener("animationend", () => {
+        htmlView.classList.remove("html-view--active");
+      });
     }
   }
 
