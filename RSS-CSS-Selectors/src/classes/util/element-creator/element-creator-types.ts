@@ -12,5 +12,5 @@ export interface IElementCreatorParam {
 
 export interface IElementCreator {
   addInnerElement(innerElement: HTMLElement | IElementCreator): void;
-  getElement(): HTMLElement | null;
+  getElement(): HTMLElement;
 }
