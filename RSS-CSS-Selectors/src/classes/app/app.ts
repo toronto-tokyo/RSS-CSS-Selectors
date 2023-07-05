@@ -24,7 +24,7 @@ export class App {
 
   public createView(): void {
     const header = new HeaderView();
-    const headerElement: HTMLElement | null = header.getElement();
+    const headerElement: HTMLElement | null = header.getViewElement();
     const footer = new FooterView();
     const footerElement: HTMLElement | null = footer.getElement();
     const main = new MainView();

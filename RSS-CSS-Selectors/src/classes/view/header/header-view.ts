@@ -1,16 +1,12 @@
 import "./header.css";
+import { View } from "../view";
+import { IElementCreatorParam } from "../../util/element-creator/element-creator-types";
 import ElementCreator from "../../util/element-creator/element-creator";
-import {
-  IElementCreatorParam,
-  IElementCreator,
-} from "../../util/element-creator/element-creator-types";
 
 const CSS_CLASSES = ["header"];
 const H1_CLASSES = ["header__title"];
 
-export class HeaderView {
-  private element: IElementCreator;
-
+export class HeaderView extends View {
   constructor() {
     const headerParam: IElementCreatorParam = {
       tag: "header",
@@ -18,16 +14,11 @@ export class HeaderView {
       textContent: "",
       callback: null,
     };
-
-    this.element = new ElementCreator(headerParam);
+    super(headerParam);
     this.configureView();
   }
 
-  public getElement(): HTMLElement | null {
-    return this.element.getElement();
-  }
-
-  private configureView(): void {
+  protected configureView(): void {
     const h1Param: IElementCreatorParam = {
       tag: "h1",
       cssClasses: H1_CLASSES,
@@ -36,6 +27,6 @@ export class HeaderView {
     };
 
     const h1Element = new ElementCreator(h1Param);
-    this.element.addInnerElement(h1Element);
+    this.viewElement.addInnerElement(h1Element);
   }
 }
