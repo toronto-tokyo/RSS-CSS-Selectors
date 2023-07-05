@@ -4,9 +4,9 @@ import {
   IElementCreator,
   IElementCreatorParam,
 } from "../../../util/element-creator/element-creator-types";
-import { BreadView } from "../../../../data/bread-view/bread-view";
-import { CheeseView } from "../../../../data/cheese-view/cheese-view";
-import { HamView } from "../../../../data/ham-view/ham-view";
+import { BreadView } from "./bread-view/bread-view";
+import { CheeseView } from "./cheese-view/cheese-view";
+import { HamView } from "./ham-view/ham-view";
 import { ICodeForTable } from "../../../../data/levels-data-types";
 
 const CSS_CLASSES = ["table"];
