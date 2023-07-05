@@ -5,7 +5,7 @@ import {
   IElementCreatorParam,
 } from "../util/element-creator/element-creator-types";
 import { HeaderView } from "../view/header/header-view";
-import { FooterView } from "../view/footer/footer-veiw";
+import { FooterView } from "../view/footer/footer-view";
 import { MainView } from "../view/main/main-view";
 
 const CSS_CLASSES = ["wrapper"];
@@ -26,7 +26,7 @@ export class App {
     const header = new HeaderView();
     const headerElement: HTMLElement | null = header.getViewElement();
     const footer = new FooterView();
-    const footerElement: HTMLElement | null = footer.getElement();
+    const footerElement: HTMLElement | null = footer.getViewElement();
     const main = new MainView();
     const mainElement: HTMLElement | null = main.getElement();
 
