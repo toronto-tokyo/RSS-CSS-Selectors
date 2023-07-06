@@ -16,7 +16,7 @@ const CSS_CLASSES_INPUT_BUTTON = ["view__input-button"];
 export class InputLineView {
   private element: IElementCreator;
 
-  private inputFieldElement: HTMLElement | null;
+  private inputFieldElement: HTMLElement;
 
   private levelRightAnswer: string;
 
@@ -28,21 +28,17 @@ export class InputLineView {
       callback: null,
     };
     this.element = new ElementCreator(inputLineParams);
-    this.inputFieldElement = null;
+    this.inputFieldElement = this.createInputField();
     this.levelRightAnswer = "";
     this.configureView();
-    // this.activateEnterFromKeyBoard();
   }
 
-  public getElement(): HTMLElement | null {
+  public getElement(): HTMLElement {
     return this.element.getElement();
   }
 
-  public getInputElement(): HTMLElement | null {
-    if (this.inputFieldElement) {
-      return this.inputFieldElement;
-    }
-    return null;
+  public getInputElement(): HTMLElement {
+    return this.inputFieldElement;
   }
 
   public setLevelAnswer(value: string): void {
@@ -50,11 +46,10 @@ export class InputLineView {
   }
 
   private configureView(): void {
-    this.createInputField();
     this.createInputButton();
   }
 
-  private createInputField(): void {
+  private createInputField(): HTMLElement {
     const inputFieldParams: IElementCreatorParam = {
       tag: "input",
       cssClasses: CSS_CLASSES_INPUT_FIELD,
@@ -65,11 +60,11 @@ export class InputLineView {
     const inputField = new ElementCreator(inputFieldParams);
     const inputFieldElement = inputField.getElement();
     if (inputFieldElement) {
-      this.inputFieldElement = inputFieldElement;
       inputFieldElement.setAttribute("type", "text");
       inputFieldElement.setAttribute("placeholder", "Type in a CSS selector");
     }
     this.element.addInnerElement(inputField);
+    return inputFieldElement;
   }
 
   private createInputButton(): void {
@@ -78,12 +73,6 @@ export class InputLineView {
       cssClasses: CSS_CLASSES_INPUT_BUTTON,
       textContent: "Enter",
       callback: null,
-      // callback: {
-      //   event: "click",
-      //   callback: () => {
-      //     this.checkSelector();
-      //   },
-      // },
     };
 
     const inputField = new ElementCreator(inputFieldParams);
