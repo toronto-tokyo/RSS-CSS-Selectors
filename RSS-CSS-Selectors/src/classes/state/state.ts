@@ -19,8 +19,10 @@ class State {
     return this.levelIndex;
   }
 
-  public setLevelNameField(value: string): void {
-    this.levelIndex = value;
+  public setCurrentLevelIndex(value: string | undefined): void {
+    if (value) {
+      this.levelIndex = value;
+    }
   }
 
   private saveLvlIndexState(): void {

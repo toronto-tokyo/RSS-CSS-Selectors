@@ -15,6 +15,8 @@ export class CssView extends ContentFieldsView {
 
   private helpAnswer: string;
 
+  private enterButton: HTMLElement | null;
+
   constructor(private table: TableView) {
     const cssViewParam: IElementCreatorParam = {
       tag: "div",
@@ -26,8 +28,17 @@ export class CssView extends ContentFieldsView {
     super(cssViewParam);
     this.inputLine = null;
     this.helpAnswer = "";
+    this.enterButton = null;
     this.configureView();
     this.createHelpButton();
+  }
+
+  public getEnterButton(): HTMLElement | null {
+    return this.enterButton;
+  }
+
+  public getInputFieldElement(): HTMLInputElement | undefined {
+    return this.inputLine?.getInputFieldElement();
   }
 
   private configureView(): void {
@@ -42,8 +53,9 @@ export class CssView extends ContentFieldsView {
   protected createContentField(): void {
     super.createContentField();
 
-    const inputLine = new InputLineView(this.table);
+    const inputLine = new InputLineView();
     this.inputLine = inputLine;
+    this.enterButton = inputLine.getEnterButton();
     const inputLineElement = inputLine.getElement();
 
     const contentFieldCreator = this.getContentField();
@@ -55,7 +67,6 @@ export class CssView extends ContentFieldsView {
 
   public setContent(content: string): void {
     this.helpAnswer = content;
-    this.inputLine?.setLevelAnswer(content);
   }
 
   private createHelpButton(): HTMLElement {
@@ -66,10 +77,9 @@ export class CssView extends ContentFieldsView {
       callback: {
         event: "click",
         callback: () => {
-          const inputLineElement =
-            this.inputLine?.getInputElement() as HTMLInputElement;
-          if (inputLineElement) {
-            inputLineElement.value = this.helpAnswer;
+          const inputFieldElement = this.inputLine?.getInputFieldElement();
+          if (inputFieldElement) {
+            inputFieldElement.value = this.helpAnswer;
           }
         },
       },

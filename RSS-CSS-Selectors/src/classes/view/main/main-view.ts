@@ -8,6 +8,7 @@ import { TableView } from "./table/table-view";
 import { CssView } from "./css-view/css-view";
 import { HTMLView } from "./html-view/html-view";
 import { LevelsView } from "./levels-view/level-view";
+import { Checker } from "./checker";
 
 const CSS_CLASSES = ["main"];
 const CSS_CLASSES_CONTENT_WRAPPER = ["main__wrapper"];
@@ -64,10 +65,18 @@ export class MainView {
       contentWrapper.addInnerElement(fieldsElement);
     }
     const levelsView = new LevelsView(table, cssView, htmlView);
-    const levelsViewElement = levelsView.getElement();
+    const levelsViewElement = levelsView.getViewElement();
     if (contentWrapperElement && levelsViewElement) {
       this.element.addInnerElement(contentWrapperElement);
       this.element.addInnerElement(levelsViewElement);
     }
+    const checker = new Checker(
+      table,
+      cssView,
+      htmlView,
+      levelsView,
+      fieldsElement
+    );
+    checker.runChecker();
   }
 }
