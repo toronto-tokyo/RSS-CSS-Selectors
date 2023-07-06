@@ -44,9 +44,9 @@ export class MainView {
     const fields = new ElementCreator(fieldsParams);
     const fieldsElement = fields.getElement();
     const cssView = new CssView(table);
-    const cssViewElement = cssView.getElement();
+    const cssViewElement = cssView.getContentFieldWrapElement();
     const htmlView = new HTMLView();
-    const htmlViewElement = htmlView.getElement();
+    const htmlViewElement = htmlView.getContentFieldWrapElement();
     if (cssViewElement && htmlViewElement) {
       fields.addInnerElement(cssViewElement);
       fields.addInnerElement(htmlViewElement);
