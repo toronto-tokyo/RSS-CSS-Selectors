@@ -34,7 +34,7 @@ export class MainView {
 
   private configureView(): void {
     const table = new TableView();
-    const tableElement = table.getElement();
+    const tableElement = table.getViewElement();
     const fieldsParams: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES_FIELDS,
