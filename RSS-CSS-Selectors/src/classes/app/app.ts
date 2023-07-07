@@ -24,20 +24,17 @@ export class App {
 
   public createView(): void {
     const header = new HeaderView();
-    const headerElement: HTMLElement | null = header.getViewElement();
+    const headerElement: HTMLElement = header.getViewElement();
     const footer = new FooterView();
-    const footerElement: HTMLElement | null = footer.getViewElement();
+    const footerElement: HTMLElement = footer.getViewElement();
     const main = new MainView();
-    const mainElement: HTMLElement | null = main.getViewElement();
+    const mainElement: HTMLElement = main.getViewElement();
 
-    if (headerElement && footerElement && mainElement) {
-      this.wrapper.addInnerElement(headerElement);
-      this.wrapper.addInnerElement(mainElement);
-      this.wrapper.addInnerElement(footerElement);
-    }
-    const wrapperElement: HTMLElement | null = this.wrapper.getElement();
-    if (wrapperElement) {
-      document.body.append(wrapperElement);
-    }
+    this.wrapper.addInnerElement(headerElement);
+    this.wrapper.addInnerElement(mainElement);
+    this.wrapper.addInnerElement(footerElement);
+
+    const wrapperElement: HTMLElement = this.wrapper.getElement();
+    document.body.append(wrapperElement);
   }
 }
