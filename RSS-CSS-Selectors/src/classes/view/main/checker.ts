@@ -108,7 +108,6 @@ export class Checker {
     if (newIndex >= LEVELS_DATA.length) {
       newIndex = 0;
       this.setLevelContent(newIndex);
-      alert("You woon");
     } else {
       this.setLevelContent(newIndex);
     }
