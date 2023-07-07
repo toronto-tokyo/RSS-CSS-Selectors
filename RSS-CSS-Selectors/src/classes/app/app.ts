@@ -28,7 +28,7 @@ export class App {
     const footer = new FooterView();
     const footerElement: HTMLElement | null = footer.getViewElement();
     const main = new MainView();
-    const mainElement: HTMLElement | null = main.getElement();
+    const mainElement: HTMLElement | null = main.getViewElement();
 
     if (headerElement && footerElement && mainElement) {
       this.wrapper.addInnerElement(headerElement);

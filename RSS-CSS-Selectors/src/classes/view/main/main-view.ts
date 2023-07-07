@@ -9,13 +9,22 @@ import { CssView } from "./css-view/css-view";
 import { HTMLView } from "./html-view/html-view";
 import { LevelsView } from "./levels-view/level-view";
 import { Checker } from "./checker";
+import { View } from "../view";
 
 const CSS_CLASSES = ["main"];
 const CSS_CLASSES_CONTENT_WRAPPER = ["main__wrapper"];
 const CSS_CLASSES_FIELDS = ["fields"];
 
-export class MainView {
-  private element: IElementCreator;
+export class MainView extends View {
+  private tableView: TableView | null;
+
+  private cssView: CssView | null;
+
+  private htmlView: HTMLView | null;
+
+  private levelsView: LevelsView | null;
+
+  private contentFields: IElementCreator | null;
 
   constructor() {
     const mainParam: IElementCreatorParam = {
@@ -24,34 +33,44 @@ export class MainView {
       textContent: "",
       callback: null,
     };
-
-    this.element = new ElementCreator(mainParam);
+    super(mainParam);
+    this.tableView = null;
+    this.cssView = null;
+    this.htmlView = null;
+    this.levelsView = null;
+    this.contentFields = null;
     this.configureView();
   }
 
-  public getElement(): HTMLElement | null {
-    return this.element.getElement();
+  protected configureView(): void {
+    const contentWrapperCreator = this.createContentWrapper();
+    const contentWrapperElement = contentWrapperCreator.getElement();
+
+    this.createLevelsView();
+    const levelsViewElement = this.levelsView?.getViewElement();
+
+    if (contentWrapperElement && levelsViewElement) {
+      this.viewElement.addInnerElement(contentWrapperElement);
+      this.viewElement.addInnerElement(levelsViewElement);
+    }
+    this.activateChecker();
   }
 
-  private configureView(): void {
-    const table = new TableView();
-    const tableElement = table.getViewElement();
-    const fieldsParams: IElementCreatorParam = {
-      tag: "div",
-      cssClasses: CSS_CLASSES_FIELDS,
-      textContent: "",
-      callback: null,
-    };
-    const fields = new ElementCreator(fieldsParams);
-    const fieldsElement = fields.getElement();
-    const cssView = new CssView(table);
-    const cssViewElement = cssView.getContentFieldWrapElement();
-    const htmlView = new HTMLView();
-    const htmlViewElement = htmlView.getContentFieldWrapElement();
-    if (cssViewElement && htmlViewElement) {
-      fields.addInnerElement(cssViewElement);
-      fields.addInnerElement(htmlViewElement);
+  private createLevelsView(): void {
+    if (this.tableView && this.cssView && this.htmlView) {
+      const levelsView = new LevelsView(
+        this.tableView,
+        this.cssView,
+        this.htmlView
+      );
+      this.levelsView = levelsView;
     }
+  }
+
+  private createContentWrapper(): IElementCreator {
+    this.createTable();
+    this.createContentFields();
+
     const contentWrapperParams: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES_CONTENT_WRAPPER,
@@ -59,24 +78,70 @@ export class MainView {
       callback: null,
     };
     const contentWrapper = new ElementCreator(contentWrapperParams);
-    const contentWrapperElement = contentWrapper.getElement();
-    if (contentWrapper && tableElement && fieldsElement) {
+
+    const tableElement = this.tableView?.getViewElement();
+    const fieldsElement = this.contentFields?.getElement();
+    if (tableElement && fieldsElement) {
       contentWrapper.addInnerElement(tableElement);
       contentWrapper.addInnerElement(fieldsElement);
     }
-    const levelsView = new LevelsView(table, cssView, htmlView);
-    const levelsViewElement = levelsView.getViewElement();
-    if (contentWrapperElement && levelsViewElement) {
-      this.element.addInnerElement(contentWrapperElement);
-      this.element.addInnerElement(levelsViewElement);
+    return contentWrapper;
+  }
+
+  private createTable(): void {
+    const table = new TableView();
+    this.tableView = table;
+  }
+
+  private createContentFields(): void {
+    this.createCssView();
+    this.createHtmlView();
+
+    const fieldsParams: IElementCreatorParam = {
+      tag: "div",
+      cssClasses: CSS_CLASSES_FIELDS,
+      textContent: "",
+      callback: null,
+    };
+    const fields = new ElementCreator(fieldsParams);
+    this.contentFields = fields;
+
+    const cssViewElement = this.cssView?.getContentFieldWrapElement();
+    const htmlViewElement = this.htmlView?.getContentFieldWrapElement();
+    if (cssViewElement && htmlViewElement) {
+      fields.addInnerElement(cssViewElement);
+      fields.addInnerElement(htmlViewElement);
     }
-    const checker = new Checker(
-      table,
-      cssView,
-      htmlView,
-      levelsView,
-      fieldsElement
-    );
-    checker.runChecker();
+  }
+
+  private createCssView(): void {
+    if (this.tableView) {
+      const cssView = new CssView(this.tableView);
+      this.cssView = cssView;
+    }
+  }
+
+  private createHtmlView(): void {
+    const htmlView = new HTMLView();
+    this.htmlView = htmlView;
+  }
+
+  private activateChecker(): void {
+    if (
+      this.tableView &&
+      this.cssView &&
+      this.htmlView &&
+      this.levelsView &&
+      this.contentFields
+    ) {
+      const checker = new Checker(
+        this.tableView,
+        this.cssView,
+        this.htmlView,
+        this.levelsView,
+        this.contentFields.getElement()
+      );
+      checker.runChecker();
+    }
   }
 }
