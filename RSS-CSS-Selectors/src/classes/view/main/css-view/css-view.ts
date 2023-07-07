@@ -10,7 +10,11 @@ const CSS_CLASSES = {
   helpButton: ["help-button"],
 };
 
-const HELP_BUTTON_TEXT_CONTENT = "Help";
+const TEXT_CONTENT = {
+  topLineTitle: "CSS Editor",
+  topLineDescription: "style.css",
+  helpButton: "Help",
+};
 
 export class CssView extends ContentFieldsView {
   private inputLine: InputLineView | null;
@@ -49,7 +53,10 @@ export class CssView extends ContentFieldsView {
   }
 
   protected createTopLine(): void {
-    super.createTopLine("CSS Editor", "style.css");
+    super.createTopLine(
+      TEXT_CONTENT.topLineTitle,
+      TEXT_CONTENT.topLineDescription
+    );
   }
 
   protected createContentField(): void {
@@ -75,7 +82,7 @@ export class CssView extends ContentFieldsView {
     const buttonElementParam: IElementCreatorParam = {
       tag: "button",
       cssClasses: CSS_CLASSES.helpButton,
-      textContent: HELP_BUTTON_TEXT_CONTENT,
+      textContent: TEXT_CONTENT.helpButton,
       callback: {
         event: "click",
         callback: () => {

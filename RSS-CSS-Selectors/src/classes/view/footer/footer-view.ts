@@ -12,7 +12,14 @@ const CSS_CLASSES = {
   rssLogo: ["rs-school_logo"],
 };
 
-const APPLICATION_YEAR = "2023";
+const TEXT_CONTENT = {
+  applicationYear: "2023",
+};
+
+const LINKS = {
+  gitHub: "https://github.com/toronto-tokyo",
+  rssSchool: "https://rs.school/js/",
+};
 
 export class FooterView extends View {
   constructor() {
@@ -34,7 +41,7 @@ export class FooterView extends View {
 
   private addGitHubLinkElement(): void {
     const gitHubLinkParams: ILinkCreatorParams = {
-      href: "https://github.com/toronto-tokyo",
+      href: LINKS.gitHub,
       target: "_blank",
       cssClass: CSS_CLASSES.gitHubLogo,
     };
@@ -46,7 +53,7 @@ export class FooterView extends View {
   private addApplicationYear(): void {
     const applicationYearParams: IElementCreatorParam = {
       tag: "div",
-      textContent: APPLICATION_YEAR,
+      textContent: TEXT_CONTENT.applicationYear,
       cssClasses: CSS_CLASSES.applicationYear,
       callback: null,
     };
@@ -57,7 +64,7 @@ export class FooterView extends View {
 
   private addRSSLinkElement(): void {
     const rssLinkParams: ILinkCreatorParams = {
-      href: "https://rs.school/js/",
+      href: LINKS.rssSchool,
       target: "_blank",
       cssClass: CSS_CLASSES.rssLogo,
     };

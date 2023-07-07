@@ -1,6 +1,17 @@
 import "./assets/ham-slice.svg";
 
-const imageLink = "./assets/ham-slice.svg";
+const IMAGE_LINK = "./assets/ham-slice.svg";
+
+const CUSTOM_TAG_NAME = "ham-slice";
+
+const CSS_STYLES = {
+  background: `url(${IMAGE_LINK}) 50%/contain no-repeat`,
+  width: "80px",
+  height: "70px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
 export class HamView extends HTMLElement {
   constructor(
@@ -15,12 +26,12 @@ export class HamView extends HTMLElement {
     elementClass: string | undefined,
     elementId: string | undefined
   ): void {
-    this.style.background = `url(${imageLink}) 50%/contain no-repeat`;
-    this.style.width = "60px";
-    this.style.height = "60px";
-    this.style.display = "flex";
-    this.style.alignItems = "center";
-    this.style.justifyContent = "center";
+    this.style.background = CSS_STYLES.background;
+    this.style.width = CSS_STYLES.width;
+    this.style.height = CSS_STYLES.height;
+    this.style.display = CSS_STYLES.display;
+    this.style.alignItems = CSS_STYLES.alignItems;
+    this.style.justifyContent = CSS_STYLES.justifyContent;
     if (elementClass) {
       this.className = elementClass;
     }
@@ -30,4 +41,4 @@ export class HamView extends HTMLElement {
   }
 }
 
-customElements.define("ham-slice", HamView);
+customElements.define(CUSTOM_TAG_NAME, HamView);

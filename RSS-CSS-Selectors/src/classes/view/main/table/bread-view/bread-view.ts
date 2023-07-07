@@ -1,6 +1,17 @@
 import "./assets/bread-slice.svg";
 
-const imageLink = "./assets/bread-slice.svg";
+const IMAGE_LINK = "./assets/bread-slice.svg";
+
+const CUSTOM_TAG_NAME = "bread-slice";
+
+const CSS_STYLES = {
+  background: `url(${IMAGE_LINK}) 50%/contain no-repeat`,
+  width: "100px",
+  height: "100px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
 export class BreadView extends HTMLElement {
   constructor(
@@ -15,12 +26,12 @@ export class BreadView extends HTMLElement {
     elementClass: string | undefined,
     elementId: string | undefined
   ): void {
-    this.style.background = `url(${imageLink}) 50%/contain no-repeat`;
-    this.style.width = "100px";
-    this.style.height = "100px";
-    this.style.display = "flex";
-    this.style.alignItems = "center";
-    this.style.justifyContent = "center";
+    this.style.background = CSS_STYLES.background;
+    this.style.width = CSS_STYLES.width;
+    this.style.height = CSS_STYLES.height;
+    this.style.display = CSS_STYLES.display;
+    this.style.alignItems = CSS_STYLES.alignItems;
+    this.style.justifyContent = CSS_STYLES.justifyContent;
     if (elementClass) {
       this.className = elementClass;
     }
@@ -30,4 +41,4 @@ export class BreadView extends HTMLElement {
   }
 }
 
-customElements.define("bread-slice", BreadView);
+customElements.define(CUSTOM_TAG_NAME, BreadView);

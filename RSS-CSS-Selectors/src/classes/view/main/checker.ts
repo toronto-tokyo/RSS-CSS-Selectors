@@ -5,6 +5,13 @@ import { LevelsView } from "./levels-view/level-view";
 import { LEVELS_DATA } from "../../../data/lelels-data";
 import { state } from "../../state/state";
 
+const CSS_CLASSES = {
+  onWrongAnswer: "wrong-answer__fields",
+  onRightAnswer: "html-view--active",
+};
+
+const CHECK_SELECTOR_ON_KEY = "Enter";
+
 export class Checker {
   constructor(
     private tableView: TableView,
@@ -38,7 +45,7 @@ export class Checker {
 
   private checkSelectorOnKeyBoardKey(): void {
     window.addEventListener("keyup", (event) => {
-      if (event.key === "Enter") {
+      if (event.key === CHECK_SELECTOR_ON_KEY) {
         this.checkSelector();
       }
     });
@@ -79,7 +86,7 @@ export class Checker {
     if (
       userSelectedElementsArray.length !== rightSelectedElementsArray.length
     ) {
-      this.contentFieldsElement.classList.add("wrong-answer__fields");
+      this.contentFieldsElement.classList.add(CSS_CLASSES.onWrongAnswer);
     } else {
       const checkedArr = userSelectedElementsArray.filter((el) =>
         rightSelectedElementsArray.includes(el)
@@ -87,10 +94,10 @@ export class Checker {
       if (checkedArr.length === userSelectedElementsArray.length) {
         this.htmlView
           .getContentFieldWrapElement()
-          .classList.add("html-view--active");
+          .classList.add(CSS_CLASSES.onRightAnswer);
         this.setNewLevel();
       } else {
-        this.contentFieldsElement.classList.add("wrong-answer__fields");
+        this.contentFieldsElement.classList.add(CSS_CLASSES.onWrongAnswer);
       }
     }
   }
@@ -134,10 +141,10 @@ export class Checker {
     const { contentFieldsElement } = this;
 
     contentFieldsElement.addEventListener("animationend", () => {
-      contentFieldsElement.classList.remove("wrong-answer__fields");
+      contentFieldsElement.classList.remove(CSS_CLASSES.onWrongAnswer);
     });
     htmlViewElement.addEventListener("animationend", () => {
-      htmlViewElement.classList.remove("html-view--active");
+      htmlViewElement.classList.remove(CSS_CLASSES.onRightAnswer);
     });
   }
 }

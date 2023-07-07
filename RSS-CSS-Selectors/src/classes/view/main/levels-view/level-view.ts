@@ -15,6 +15,11 @@ const CSS_CLASSES = {
   levelsView: ["levels-view"],
   levelLink: ["levels-view__link"],
   levelTitle: ["levels-view__title"],
+  selectedLink: ["selected"],
+};
+
+const TEXT_CONTENT = {
+  title: "Choose level",
 };
 
 export class LevelsView extends View {
@@ -68,7 +73,7 @@ export class LevelsView extends View {
     const levelsTitleParam: IElementCreatorParam = {
       tag: "h2",
       cssClasses: CSS_CLASSES.levelTitle,
-      textContent: "Choose level",
+      textContent: TEXT_CONTENT.title,
       callback: null,
     };
     const levelsTitleCreator = new ElementCreator(levelsTitleParam);
@@ -100,18 +105,18 @@ export class LevelsView extends View {
   }
 
   public setSelectedLink(target: HTMLElement): void {
-    if (target.className.includes("levels-view__link")) {
+    if (target.className.includes(`${CSS_CLASSES.levelLink.flat(1)}`)) {
       const levelIndex = target.dataset.index;
       state.setCurrentLevelIndex(levelIndex);
       this.removeSelectedLinkStatus();
-      target.classList.add("selected");
+      target.classList.add(...CSS_CLASSES.selectedLink);
     }
   }
 
   private removeSelectedLinkStatus(): void {
     this.linkElements.forEach((el) => {
       const element = el.getElement();
-      element?.classList.remove("selected");
+      element?.classList.remove(...CSS_CLASSES.selectedLink);
     });
   }
 }

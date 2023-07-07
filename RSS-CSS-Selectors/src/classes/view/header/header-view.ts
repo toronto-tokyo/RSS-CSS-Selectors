@@ -8,6 +8,10 @@ const CSS_CLASSES = {
   title: ["header__title"],
 };
 
+const TEXT_CONTENT = {
+  title: "RSS CSS Selectors",
+};
+
 export class HeaderView extends View {
   constructor() {
     const headerParam: IElementCreatorParam = {
@@ -24,7 +28,7 @@ export class HeaderView extends View {
     const h1Param: IElementCreatorParam = {
       tag: "h1",
       cssClasses: CSS_CLASSES.title,
-      textContent: "RSS CSS Selectors",
+      textContent: TEXT_CONTENT.title,
       callback: null,
     };
 

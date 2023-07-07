@@ -11,6 +11,15 @@ const CSS_CLASSES = {
   inputButton: ["view__input-button"],
 };
 
+const TEXT_BUTTON = {
+  enterButton: "Enter",
+};
+
+const INPUT_FIELD_ATTRIBUTES = {
+  type: "text",
+  placeHolder: "Type in a CSS selector",
+};
+
 export class InputLineView {
   private element: IElementCreator;
 
@@ -44,10 +53,9 @@ export class InputLineView {
 
   private createInputField(): HTMLInputElement {
     const inputField = document.createElement("input");
-    inputField.type = "text";
     inputField.classList.add(...CSS_CLASSES.inputField);
-    inputField.setAttribute("type", "text");
-    inputField.setAttribute("placeholder", "Type in a CSS selector");
+    inputField.setAttribute("type", INPUT_FIELD_ATTRIBUTES.type);
+    inputField.setAttribute("placeholder", INPUT_FIELD_ATTRIBUTES.placeHolder);
     this.element.addInnerElement(inputField);
     return inputField;
   }
@@ -56,7 +64,7 @@ export class InputLineView {
     const inputFieldParams: IElementCreatorParam = {
       tag: "button",
       cssClasses: CSS_CLASSES.inputButton,
-      textContent: "Enter",
+      textContent: TEXT_BUTTON.enterButton,
       callback: null,
     };
 

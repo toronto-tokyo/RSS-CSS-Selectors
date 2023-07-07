@@ -5,6 +5,12 @@ import { clearWrapperElement } from "../functions";
 
 const CSS_CLASSES = {
   htmlView: ["view", "html-view"],
+  htmlCode: ["html-code"],
+};
+
+const TEXT_CONTENT = {
+  topLineTitle: "HTML Viewer",
+  topLineDescription: "table.html",
 };
 
 export class HTMLView extends ContentFieldsView {
@@ -26,7 +32,10 @@ export class HTMLView extends ContentFieldsView {
   }
 
   protected createTopLine(): void {
-    super.createTopLine("HTML Viewer", "table.html");
+    super.createTopLine(
+      TEXT_CONTENT.topLineTitle,
+      TEXT_CONTENT.topLineDescription
+    );
   }
 
   protected createContentField(): void {
@@ -36,7 +45,7 @@ export class HTMLView extends ContentFieldsView {
   public setContent(content: string): void {
     this.clearHtmlViewContentElement();
     const htmlCode = document.createElement("pre");
-    htmlCode.className = "html-code";
+    htmlCode.classList.add(...CSS_CLASSES.htmlCode);
     htmlCode.textContent = content;
     this.getContentField()?.addInnerElement(htmlCode);
   }
