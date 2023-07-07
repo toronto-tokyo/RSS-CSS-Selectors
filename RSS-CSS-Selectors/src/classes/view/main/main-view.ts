@@ -117,10 +117,8 @@ export class MainView extends View {
   }
 
   private createCssView(): void {
-    if (this.tableView) {
-      const cssView = new CssView(this.tableView);
-      this.cssView = cssView;
-    }
+    const cssView = new CssView();
+    this.cssView = cssView;
   }
 
   private createHtmlView(): void {

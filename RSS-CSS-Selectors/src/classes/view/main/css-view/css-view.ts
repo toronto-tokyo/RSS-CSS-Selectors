@@ -2,7 +2,6 @@ import "./css-view.css";
 import ElementCreator from "../../../util/element-creator/element-creator";
 import { IElementCreatorParam } from "../../../util/element-creator/element-creator-types";
 import { InputLineView } from "./input-line-view/input-line-view";
-import { TableView } from "../table/table-view";
 import { ContentFieldsView } from "../content-fields-view/content-fields-view";
 
 const CSS_CLASSES = {
@@ -23,7 +22,7 @@ export class CssView extends ContentFieldsView {
 
   private enterButton: HTMLElement | null;
 
-  constructor(private table: TableView) {
+  constructor() {
     const cssViewParam: IElementCreatorParam = {
       tag: "div",
       cssClasses: CSS_CLASSES.view,
