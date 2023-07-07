@@ -5,8 +5,10 @@ import { InputLineView } from "./input-line-view/input-line-view";
 import { TableView } from "../table/table-view";
 import { ContentFieldsView } from "../content-fields-view/content-fields-view";
 
-const CSS_CLASSES = ["view"];
-const CSS_CLASSES_CSS_HELP_BUTTON = ["help-button"];
+const CSS_CLASSES = {
+  view: ["view"],
+  helpButton: ["help-button"],
+};
 
 const HELP_BUTTON_TEXT_CONTENT = "Help";
 
@@ -20,7 +22,7 @@ export class CssView extends ContentFieldsView {
   constructor(private table: TableView) {
     const cssViewParam: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.view,
       textContent: "",
       callback: null,
     };
@@ -72,7 +74,7 @@ export class CssView extends ContentFieldsView {
   private createHelpButton(): HTMLElement {
     const buttonElementParam: IElementCreatorParam = {
       tag: "button",
-      cssClasses: CSS_CLASSES_CSS_HELP_BUTTON,
+      cssClasses: CSS_CLASSES.helpButton,
       textContent: HELP_BUTTON_TEXT_CONTENT,
       callback: {
         event: "click",

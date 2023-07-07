@@ -5,7 +5,9 @@ import {
   IElementCreatorParam,
 } from "../../../../util/element-creator/element-creator-types";
 
-const CSS_CLASSES_CSS_NUMBERS_LINE = ["view__numbers-line"];
+const CSS_CLASSES = {
+  numbersLine: ["view__numbers-line"],
+};
 const LINES_COUNT = 15;
 
 export class NumbersLineView {
@@ -14,7 +16,7 @@ export class NumbersLineView {
   constructor() {
     const numbersLineParams: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES_CSS_NUMBERS_LINE,
+      cssClasses: CSS_CLASSES.numbersLine,
       textContent: "",
       callback: null,
     };

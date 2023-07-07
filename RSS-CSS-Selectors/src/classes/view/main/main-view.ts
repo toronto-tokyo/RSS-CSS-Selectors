@@ -11,9 +11,11 @@ import { LevelsView } from "./levels-view/level-view";
 import { Checker } from "./checker";
 import { View } from "../view";
 
-const CSS_CLASSES = ["main"];
-const CSS_CLASSES_CONTENT_WRAPPER = ["main__wrapper"];
-const CSS_CLASSES_FIELDS = ["fields"];
+const CSS_CLASSES = {
+  main: ["main"],
+  contentWrapper: ["main__wrapper"],
+  fields: ["fields"],
+};
 
 export class MainView extends View {
   private tableView: TableView | null;
@@ -29,7 +31,7 @@ export class MainView extends View {
   constructor() {
     const mainParam: IElementCreatorParam = {
       tag: "main",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.main,
       textContent: "",
       callback: null,
     };
@@ -73,7 +75,7 @@ export class MainView extends View {
 
     const contentWrapperParams: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES_CONTENT_WRAPPER,
+      cssClasses: CSS_CLASSES.contentWrapper,
       textContent: "",
       callback: null,
     };
@@ -99,7 +101,7 @@ export class MainView extends View {
 
     const fieldsParams: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES_FIELDS,
+      cssClasses: CSS_CLASSES.fields,
       textContent: "",
       callback: null,
     };

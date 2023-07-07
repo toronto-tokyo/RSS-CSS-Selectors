@@ -5,10 +5,12 @@ import { View } from "../view";
 import { LinkCreator } from "../../util/link-creator/link-creator";
 import { ILinkCreatorParams } from "../../util/link-creator/link-creator-types";
 
-const CSS_CLASSES = ["footer"];
-const CSS_CLASSES_GITHUB = ["github_logo"];
-const CSS_CLASSES_APPLICATION_YEAR = ["year"];
-const CSS_CLASSES_RSS = ["rs-school_logo"];
+const CSS_CLASSES = {
+  footer: ["footer"],
+  gitHubLogo: ["github_logo"],
+  applicationYear: ["year"],
+  rssLogo: ["rs-school_logo"],
+};
 
 const APPLICATION_YEAR = "2023";
 
@@ -16,7 +18,7 @@ export class FooterView extends View {
   constructor() {
     const footerParam: IElementCreatorParam = {
       tag: "footer",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.footer,
       textContent: "",
       callback: null,
     };
@@ -34,7 +36,7 @@ export class FooterView extends View {
     const gitHubLinkParams: ILinkCreatorParams = {
       href: "https://github.com/toronto-tokyo",
       target: "_blank",
-      cssClass: CSS_CLASSES_GITHUB,
+      cssClass: CSS_CLASSES.gitHubLogo,
     };
     const gitHubLinkCreator = new LinkCreator(gitHubLinkParams);
     const gitHubLinkElement = gitHubLinkCreator.getLinkElement();
@@ -45,7 +47,7 @@ export class FooterView extends View {
     const applicationYearParams: IElementCreatorParam = {
       tag: "div",
       textContent: APPLICATION_YEAR,
-      cssClasses: CSS_CLASSES_APPLICATION_YEAR,
+      cssClasses: CSS_CLASSES.applicationYear,
       callback: null,
     };
     const applicationYearCreator = new ElementCreator(applicationYearParams);
@@ -57,7 +59,7 @@ export class FooterView extends View {
     const rssLinkParams: ILinkCreatorParams = {
       href: "https://rs.school/js/",
       target: "_blank",
-      cssClass: CSS_CLASSES_RSS,
+      cssClass: CSS_CLASSES.rssLogo,
     };
     const rssLinkCreator = new LinkCreator(rssLinkParams);
     const rssLinkElement = rssLinkCreator.getLinkElement();

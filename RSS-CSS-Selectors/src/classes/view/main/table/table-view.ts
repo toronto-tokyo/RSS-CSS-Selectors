@@ -9,9 +9,11 @@ import { View } from "../../view";
 import { clearWrapperElement } from "../functions";
 import { animateTargetElements, createContent } from "./table-view-functions";
 
-const CSS_CLASSES = ["table"];
-const CSS_CLASSES_TABLE_SURFACE = ["table__surface"];
-const CSS_CLASSES_TABLE_SIDE = ["table__side"];
+const CSS_CLASSES = {
+  table: ["table"],
+  tableSurface: ["table__surface"],
+  tableSide: ["table__side"],
+};
 
 export class TableView extends View {
   private tableSurface: IElementCreator | null;
@@ -19,7 +21,7 @@ export class TableView extends View {
   constructor() {
     const headerParam: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.table,
       textContent: "",
       callback: null,
     };
@@ -62,7 +64,7 @@ export class TableView extends View {
   private addTableSurfaceElement(): void {
     const tableSurfaceParam: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES_TABLE_SURFACE,
+      cssClasses: CSS_CLASSES.tableSurface,
       textContent: "",
       callback: null,
     };
@@ -74,7 +76,7 @@ export class TableView extends View {
   private addTableSideElement(): void {
     const tableSideParam: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES_TABLE_SIDE,
+      cssClasses: CSS_CLASSES.tableSide,
       textContent: "",
       callback: null,
     };

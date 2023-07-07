@@ -11,9 +11,11 @@ import { LEVELS_DATA } from "../../../../data/lelels-data";
 import { state } from "../../../state/state";
 import { View } from "../../view";
 
-const CSS_CLASSES = ["levels-view"];
-const CSS_CLASSES_LVL_LINK = ["levels-view__link"];
-const CSS_CLASSES_LVL_TITLE = ["levels-view__title"];
+const CSS_CLASSES = {
+  levelsView: ["levels-view"],
+  levelLink: ["levels-view__link"],
+  levelTitle: ["levels-view__title"],
+};
 
 export class LevelsView extends View {
   private linkElements: IElementCreator[];
@@ -28,7 +30,7 @@ export class LevelsView extends View {
     const levelsViewParam: IElementCreatorParam = {
       tag: "div",
       textContent: "",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.levelsView,
       callback: {
         event: "click",
         callback: (event) => {
@@ -65,7 +67,7 @@ export class LevelsView extends View {
   private addLevelsTitle(): void {
     const levelsTitleParam: IElementCreatorParam = {
       tag: "h2",
-      cssClasses: CSS_CLASSES_LVL_TITLE,
+      cssClasses: CSS_CLASSES.levelTitle,
       textContent: "Choose level",
       callback: null,
     };
@@ -77,7 +79,7 @@ export class LevelsView extends View {
     LEVELS_DATA.forEach((levelData, index) => {
       const levelLinkParam: IElementCreatorParam = {
         tag: "div",
-        cssClasses: CSS_CLASSES_LVL_LINK,
+        cssClasses: CSS_CLASSES.levelLink,
         textContent: `${levelData.title}`,
         callback: {
           event: "click",

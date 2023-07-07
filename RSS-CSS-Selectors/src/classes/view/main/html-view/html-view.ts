@@ -3,13 +3,15 @@ import { IElementCreatorParam } from "../../../util/element-creator/element-crea
 import { ContentFieldsView } from "../content-fields-view/content-fields-view";
 import { clearWrapperElement } from "../functions";
 
-const CSS_CLASSES = ["view", "html-view"];
+const CSS_CLASSES = {
+  htmlView: ["view", "html-view"],
+};
 
 export class HTMLView extends ContentFieldsView {
   constructor() {
     const htmlViewParam: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.htmlView,
       textContent: "",
       callback: null,
     };

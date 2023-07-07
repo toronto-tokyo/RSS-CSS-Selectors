@@ -8,14 +8,16 @@ import { HeaderView } from "../view/header/header-view";
 import { FooterView } from "../view/footer/footer-view";
 import { MainView } from "../view/main/main-view";
 
-const CSS_CLASSES = ["wrapper"];
+const CSS_CLASSES = {
+  appWrapper: ["wrapper"],
+};
 export class App {
   private wrapper: IElementCreator;
 
   constructor() {
     const wrapperParams: IElementCreatorParam = {
       tag: "div",
-      cssClasses: CSS_CLASSES,
+      cssClasses: CSS_CLASSES.appWrapper,
       textContent: "",
       callback: null,
     };
