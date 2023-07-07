@@ -18,7 +18,6 @@ export class Checker {
     this.setSelectedLevelAfterLoad();
     this.checkSelectorOnKeyBoardKey();
     this.checkSelectorOnElement();
-    this.checkSelector();
   }
 
   private setSelectedLevelAfterLoad(): void {
