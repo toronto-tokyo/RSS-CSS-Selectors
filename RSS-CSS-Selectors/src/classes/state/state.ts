@@ -1,16 +1,10 @@
-function loadLevelNameState(): string {
-  const storageLvlIndex = localStorage.getItem("level-index");
-  if (storageLvlIndex) {
-    return storageLvlIndex;
-  }
-  return "0";
-}
+import { loadLevelIndex } from "./functions";
 
 class State {
   private levelIndex: string;
 
   constructor() {
-    this.levelIndex = loadLevelNameState();
+    this.levelIndex = loadLevelIndex();
 
     window.addEventListener("beforeunload", this.saveLvlIndexState.bind(this));
   }
