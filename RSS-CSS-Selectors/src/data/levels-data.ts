@@ -1,4 +1,4 @@
-import { ILevel } from "./levels-data-types";
+import { ILevel } from "@levels-data/levels-data-types";
 
 export const LEVELS_DATA: ILevel[] = [
   {

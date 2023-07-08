@@ -1,9 +1,9 @@
 import "./footer.css";
-import ElementCreator from "../../util/element-creator/element-creator";
-import { IElementCreatorParam } from "../../util/element-creator/element-creator-types";
-import { View } from "../view";
-import { LinkCreator } from "../../util/link-creator/link-creator";
-import { ILinkCreatorParams } from "../../util/link-creator/link-creator-types";
+import ElementCreator from "@element-creator/element-creator";
+import { IElementCreatorParam } from "@element-creator/element-creator-types";
+import { View } from "@view/view";
+import { LinkCreator } from "@link-creator/link-creator";
+import { ILinkCreatorParams } from "@link-creator/link-creator-types";
 
 const CSS_CLASSES = {
   footer: ["footer"],

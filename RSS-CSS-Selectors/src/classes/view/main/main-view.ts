@@ -1,16 +1,16 @@
 import "./main.css";
-import ElementCreator from "../../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreatorParam,
   IElementCreator,
-} from "../../util/element-creator/element-creator-types";
-import { TableView } from "./table/table-view";
-import { CssView } from "./css-view/css-view";
-import { HTMLView } from "./html-view/html-view";
-import { LevelsView } from "./levels-view/level-view";
-import { Checker } from "./checker";
-import { View } from "../view";
-import { State } from "../../state/state";
+} from "@element-creator/element-creator-types";
+import { TableView } from "@table-view/table-view";
+import { CssView } from "@css-view/css-view";
+import { HTMLView } from "@html-view/html-view";
+import { LevelsView } from "@levels-view/level-view";
+import { Checker } from "@main-view/checker";
+import { View } from "@view/view";
+import { State } from "@state/state";
 
 const CSS_CLASSES = {
   main: ["main"],

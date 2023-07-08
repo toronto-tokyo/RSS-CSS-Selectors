@@ -1,9 +1,9 @@
 import "./numbers-line-view.css";
-import ElementCreator from "../../../../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../../../../util/element-creator/element-creator-types";
+} from "@element-creator/element-creator-types";
 
 const CSS_CLASSES = {
   numbersLine: ["view__numbers-line"],

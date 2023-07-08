@@ -1,10 +1,10 @@
-import { TableView } from "./table/table-view";
-import { CssView } from "./css-view/css-view";
-import { HTMLView } from "./html-view/html-view";
-import { LevelsView } from "./levels-view/level-view";
-import { LEVELS_DATA } from "../../../data/levels-data";
-import { State } from "../../state/state";
-import { IElementCreator } from "../../util/element-creator/element-creator-types";
+import { TableView } from "@table-view/table-view";
+import { CssView } from "@css-view/css-view";
+import { HTMLView } from "@html-view/html-view";
+import { LevelsView } from "@levels-view/level-view";
+import { LEVELS_DATA } from "@levels-data/levels-data";
+import { State } from "@state/state";
+import { IElementCreator } from "@element-creator/element-creator-types";
 
 const CSS_CLASSES = {
   onWrongAnswer: "wrong-answer__fields",

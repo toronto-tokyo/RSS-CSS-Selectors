@@ -1,5 +1,5 @@
-import ElementCreator from "../util/element-creator/element-creator";
-import { IElementCreatorParam } from "../util/element-creator/element-creator-types";
+import ElementCreator from "@element-creator/element-creator";
+import { IElementCreatorParam } from "@element-creator/element-creator-types";
 
 export abstract class View {
   public viewElement: ElementCreator;

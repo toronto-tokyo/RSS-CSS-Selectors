@@ -1,4 +1,4 @@
-import { loadLevelIndex } from "./functions";
+import { loadLevelIndex } from "@state/functions";
 
 export class State {
   private levelIndex: string;

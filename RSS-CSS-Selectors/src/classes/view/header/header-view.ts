@@ -1,7 +1,7 @@
 import "./header.css";
-import { View } from "../view";
-import { IElementCreatorParam } from "../../util/element-creator/element-creator-types";
-import ElementCreator from "../../util/element-creator/element-creator";
+import { View } from "@view/view";
+import { IElementCreatorParam } from "@element-creator/element-creator-types";
+import ElementCreator from "@element-creator/element-creator";
 
 const CSS_CLASSES = {
   header: ["header"],

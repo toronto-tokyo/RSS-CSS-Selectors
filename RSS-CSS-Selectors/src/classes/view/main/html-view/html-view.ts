@@ -2,9 +2,9 @@ import "./html-view.css";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../../../util/element-creator/element-creator-types";
-import { ContentFieldsView } from "../content-fields-view/content-fields-view";
-import { clearWrapperElement } from "../functions";
+} from "@element-creator/element-creator-types";
+import { ContentFieldsView } from "@content-fields-view/content-fields-view";
+import { clearWrapperElement } from "@main-view/functions";
 
 const CSS_CLASSES = {
   htmlView: ["view", "html-view"],

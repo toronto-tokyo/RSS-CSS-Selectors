@@ -1,10 +1,10 @@
 import "./content-fields-view.css";
-import ElementCreator from "../../../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../../../util/element-creator/element-creator-types";
-import { NumbersLineView } from "./numbers-line-view/numbers-line-view";
+} from "@element-creator/element-creator-types";
+import { NumbersLineView } from "@number-line-view/numbers-line-view";
 
 const CSS_CLASSES = {
   topLine: ["view__top-line"],

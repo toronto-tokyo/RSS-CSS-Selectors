@@ -1,9 +1,9 @@
 import "./input-line.css";
-import ElementCreator from "../../../../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../../../../util/element-creator/element-creator-types";
+} from "@element-creator/element-creator-types";
 
 const CSS_CLASSES = {
   inputLine: ["view__input-line"],

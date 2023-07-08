@@ -2,7 +2,7 @@ import {
   IElementCreatorParam,
   ICallbackParams,
   IElementCreator,
-} from "./element-creator-types";
+} from "@element-creator/element-creator-types";
 
 export default class ElementCreator implements IElementCreator {
   private element: HTMLElement;

@@ -1,13 +1,16 @@
 import "./table.css";
-import ElementCreator from "../../../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../../../util/element-creator/element-creator-types";
-import { ICodeForTable } from "../../../../data/levels-data-types";
-import { View } from "../../view";
-import { clearWrapperElement } from "../functions";
-import { animateTargetElements, createContent } from "./table-view-functions";
+} from "@element-creator/element-creator-types";
+import { ICodeForTable } from "@levels-data/levels-data-types";
+import { View } from "@view/view";
+import { clearWrapperElement } from "@main-view/functions";
+import {
+  animateTargetElements,
+  createContent,
+} from "@table-view/table-view-functions";
 
 const CSS_CLASSES = {
   table: ["table"],

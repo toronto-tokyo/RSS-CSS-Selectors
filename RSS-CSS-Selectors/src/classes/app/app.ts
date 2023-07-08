@@ -1,12 +1,12 @@
 import "./app.css";
-import ElementCreator from "../util/element-creator/element-creator";
+import ElementCreator from "@element-creator/element-creator";
 import {
   IElementCreator,
   IElementCreatorParam,
-} from "../util/element-creator/element-creator-types";
-import { HeaderView } from "../view/header/header-view";
-import { FooterView } from "../view/footer/footer-view";
-import { MainView } from "../view/main/main-view";
+} from "@element-creator/element-creator-types";
+import { HeaderView } from "@header-view/header-view";
+import { FooterView } from "@footer-view/footer-view";
+import { MainView } from "@main-view/main-view";
 
 const CSS_CLASSES = {
   appWrapper: ["wrapper"],

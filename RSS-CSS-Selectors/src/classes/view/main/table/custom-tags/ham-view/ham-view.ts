@@ -1,4 +1,4 @@
-import { CustomTagView } from "../custom-tag-view";
+import { CustomTagView } from "@custom-tags-view/custom-tag-view";
 import "./assets/ham-slice.svg";
 
 const IMAGE_LINK = "./assets/ham-slice.svg";

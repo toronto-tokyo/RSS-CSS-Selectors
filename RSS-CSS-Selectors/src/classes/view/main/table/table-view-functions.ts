@@ -1,7 +1,7 @@
-import { BreadView } from "./custom-tags/bread-view/bread-view";
-import { CheeseView } from "./custom-tags/cheese-view/cheese-view";
-import { HamView } from "./custom-tags/ham-view/ham-view";
-import { ICodeForTable } from "../../../../data/levels-data-types";
+import { BreadView } from "@custom-tags-view/bread-view/bread-view";
+import { CheeseView } from "@custom-tags-view/cheese-view/cheese-view";
+import { HamView } from "@custom-tags-view/ham-view/ham-view";
+import { ICodeForTable } from "@levels-data/levels-data-types";
 
 export function animateTargetElements(
   wrapperElement: HTMLElement,

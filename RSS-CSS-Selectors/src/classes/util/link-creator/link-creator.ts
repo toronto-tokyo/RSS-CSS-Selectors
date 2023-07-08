@@ -1,4 +1,4 @@
-import { ILinkCreatorParams } from "./link-creator-types";
+import { ILinkCreatorParams } from "@link-creator/link-creator-types";
 
 export class LinkCreator {
   private linkElement: HTMLAnchorElement;

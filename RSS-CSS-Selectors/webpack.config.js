@@ -109,6 +109,25 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    alias: {
+      "@element-creator": path.resolve(__dirname, "src/classes/util/element-creator/"),
+      "@link-creator": path.resolve(__dirname, "src/classes/util/link-creator/"),
+      "@state": path.resolve(__dirname, "src/classes/state/"),
+      "@view": path.resolve(__dirname, "src/classes/view/"),
+      "@header-view": path.resolve(__dirname, "src/classes/view/header/"),
+      "@footer-view": path.resolve(__dirname, "src/classes/view/footer/"),
+      "@main-view": path.resolve(__dirname, "src/classes/view/main/"),
+      "@content-fields-view": path.resolve(__dirname, "src/classes/view/main/content-fields-view/"),
+      "@number-line-view": path.resolve(__dirname, "src/classes/view/main/content-fields-view/numbers-line-view"),
+      "@input-line-view": path.resolve(__dirname, "src/classes/view/main/css-view/input-line-view/"),
+      "@css-view": path.resolve(__dirname, "src/classes/view/main/css-view/"),
+      "@html-view": path.resolve(__dirname, "src/classes/view/main/html-view/"),
+      "@table-view": path.resolve(__dirname, "src/classes/view/main/table/"),
+      "@levels-data": path.resolve(__dirname, "src/data/"),
+      "@custom-tags-view": path.resolve(__dirname, "src/classes/view/main/table/custom-tags/"),
+      "@levels-view": path.resolve(__dirname, "src/classes/view/main/levels-view/"),
+      "@app": path.resolve(__dirname, "src/classes/app/"),
+    }
   }
 }
