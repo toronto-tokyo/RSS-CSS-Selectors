@@ -1,6 +1,6 @@
 import { loadLevelIndex } from "./functions";
 
-class State {
+export class State {
   private levelIndex: string;
 
   constructor() {
@@ -23,5 +23,3 @@ class State {
     localStorage.setItem("level-index", this.levelIndex);
   }
 }
-
-export const state = new State();

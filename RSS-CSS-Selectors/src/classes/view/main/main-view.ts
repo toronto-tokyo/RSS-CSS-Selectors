@@ -10,6 +10,7 @@ import { HTMLView } from "./html-view/html-view";
 import { LevelsView } from "./levels-view/level-view";
 import { Checker } from "./checker";
 import { View } from "../view";
+import { State } from "../../state/state";
 
 const CSS_CLASSES = {
   main: ["main"],
@@ -28,6 +29,8 @@ export class MainView extends View {
 
   private contentFields: IElementCreator | null;
 
+  private state: State;
+
   constructor() {
     const mainParam: IElementCreatorParam = {
       tag: "main",
@@ -41,6 +44,7 @@ export class MainView extends View {
     this.htmlView = null;
     this.levelsView = null;
     this.contentFields = null;
+    this.state = new State();
     this.configureView();
   }
 
@@ -65,7 +69,8 @@ export class MainView extends View {
       const levelsView: LevelsView = new LevelsView(
         this.tableView,
         this.cssView,
-        this.htmlView
+        this.htmlView,
+        this.state
       );
       this.levelsView = levelsView;
     }
@@ -143,6 +148,7 @@ export class MainView extends View {
       this.contentFields
     ) {
       const checker: Checker = new Checker(
+        this.state,
         this.tableView,
         this.cssView,
         this.htmlView,

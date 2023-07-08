@@ -8,8 +8,8 @@ import { CssView } from "../css-view/css-view";
 import { HTMLView } from "../html-view/html-view";
 import ElementCreator from "../../../util/element-creator/element-creator";
 import { LEVELS_DATA } from "../../../../data/levels-data";
-import { state } from "../../../state/state";
 import { View } from "../../view";
+import { State } from "../../../state/state";
 
 const CSS_CLASSES = {
   levelsView: ["levels-view"],
@@ -30,7 +30,8 @@ export class LevelsView extends View {
   constructor(
     private tableView: TableView,
     private cssView: CssView,
-    private htmlView: HTMLView
+    private htmlView: HTMLView,
+    private state: State
   ) {
     const levelsViewParam: IElementCreatorParam = {
       tag: "div",
@@ -111,7 +112,9 @@ export class LevelsView extends View {
   public setSelectedLink(target: HTMLElement): void {
     if (target.className.includes(`${CSS_CLASSES.levelLink.flat(1)}`)) {
       const levelIndex: string | undefined = target.dataset.index;
-      state.setCurrentLevelIndex(levelIndex);
+      if (this.state) {
+        this.state.setCurrentLevelIndex(levelIndex);
+      }
       this.removeSelectedLinkStatus();
       target.classList.add(...CSS_CLASSES.selectedLink);
     }

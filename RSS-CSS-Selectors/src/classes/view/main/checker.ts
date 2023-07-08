@@ -3,7 +3,7 @@ import { CssView } from "./css-view/css-view";
 import { HTMLView } from "./html-view/html-view";
 import { LevelsView } from "./levels-view/level-view";
 import { LEVELS_DATA } from "../../../data/levels-data";
-import { state } from "../../state/state";
+import { State } from "../../state/state";
 import { IElementCreator } from "../../util/element-creator/element-creator-types";
 
 const CSS_CLASSES = {
@@ -15,6 +15,7 @@ const CHECK_SELECTOR_ON_KEY = "Enter";
 
 export class Checker {
   constructor(
+    private state: State,
     private tableView: TableView,
     private cssView: CssView,
     private htmlView: HTMLView,
@@ -30,7 +31,7 @@ export class Checker {
 
   private setSelectedLevelAfterLoad(): void {
     window.addEventListener("load", () => {
-      const loadedIndex: string = state.getLevelIndex();
+      const loadedIndex: string = this.state.getLevelIndex();
       this.setLevelContent(+loadedIndex);
     });
   }
@@ -108,7 +109,7 @@ export class Checker {
   }
 
   private setNewLevel(): void {
-    const index: string = state.getLevelIndex();
+    const index: string = this.state.getLevelIndex();
     let newIndex: number = +index + 1;
     if (newIndex >= LEVELS_DATA.length) {
       newIndex = 0;
@@ -119,7 +120,7 @@ export class Checker {
   }
 
   private setLevelContent(newIndex: number): void {
-    state.setCurrentLevelIndex(`${newIndex}`);
+    this.state.setCurrentLevelIndex(`${newIndex}`);
     const targetLinkCreator: IElementCreator | undefined = this.levelsView
       .getLinkElements()
       .find((el) => {
