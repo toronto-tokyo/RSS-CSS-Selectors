@@ -8,7 +8,8 @@ export default class ElementCreator implements IElementCreator {
   private element: HTMLElement;
 
   constructor(params: IElementCreatorParam) {
-    this.element = this.createElement(params);
+    this.element = document.createElement(params.tag);
+    this.configureElement(params);
   }
 
   public addInnerElement(innerElement: ElementCreator | HTMLElement): void {
@@ -24,12 +25,10 @@ export default class ElementCreator implements IElementCreator {
     return this.element;
   }
 
-  public createElement(params: IElementCreatorParam): HTMLElement {
-    this.element = document.createElement(params.tag);
+  private configureElement(params: IElementCreatorParam): void {
     this.setCssSelectors(params.cssClasses);
     this.setTextContent(params.textContent);
     this.setCallback(params.callback);
-    return this.element;
   }
 
   private setCssSelectors(cssSelectors: string[]): void {
