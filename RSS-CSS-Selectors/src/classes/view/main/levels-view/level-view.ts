@@ -7,7 +7,7 @@ import { TableView } from "../table/table-view";
 import { CssView } from "../css-view/css-view";
 import { HTMLView } from "../html-view/html-view";
 import ElementCreator from "../../../util/element-creator/element-creator";
-import { LEVELS_DATA } from "../../../../data/lelels-data";
+import { LEVELS_DATA } from "../../../../data/levels-data";
 import { state } from "../../../state/state";
 import { View } from "../../view";
 
