@@ -56,9 +56,11 @@ export class ContentFieldsView {
       textContent: topLineDescriptionTextContent,
       callback: null,
     };
-    const topLine = new ElementCreator(topLineParams);
-    const topLineTitle = new ElementCreator(topLineTitleParams);
-    const topLineDescription = new ElementCreator(topLineDescriptionParams);
+    const topLine: ElementCreator = new ElementCreator(topLineParams);
+    const topLineTitle: ElementCreator = new ElementCreator(topLineTitleParams);
+    const topLineDescription: ElementCreator = new ElementCreator(
+      topLineDescriptionParams
+    );
 
     topLine.addInnerElement(topLineTitle);
     topLine.addInnerElement(topLineDescription);
@@ -80,12 +82,12 @@ export class ContentFieldsView {
       textContent: "",
       callback: null,
     };
-    const contentWrap = new ElementCreator(contentWrapParams);
-    const content = new ElementCreator(contentParams);
+    const contentWrap: ElementCreator = new ElementCreator(contentWrapParams);
+    const content: ElementCreator = new ElementCreator(contentParams);
     this.contentFieldCreator = content;
 
-    const numbersLine = new NumbersLineView();
-    const numberLineElement = numbersLine.getElement();
+    const numbersLine: NumbersLineView = new NumbersLineView();
+    const numberLineElement: HTMLElement = numbersLine.getElement();
     contentWrap.addInnerElement(numberLineElement);
 
     contentWrap.addInnerElement(content);

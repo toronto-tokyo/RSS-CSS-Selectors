@@ -36,8 +36,10 @@ export class NumbersLineView {
         textContent: `${i}`,
         callback: null,
       };
-      const numberInLine = new ElementCreator(numberInLineParams);
-      const brTag = document.createElement("br");
+      const numberInLine: ElementCreator = new ElementCreator(
+        numberInLineParams
+      );
+      const brTag: HTMLBRElement = document.createElement("br");
       this.element.addInnerElement(numberInLine);
       this.element.addInnerElement(brTag);
     }

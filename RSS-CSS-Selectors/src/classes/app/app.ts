@@ -25,11 +25,11 @@ export class App {
   }
 
   public createView(): void {
-    const header = new HeaderView();
+    const header: HeaderView = new HeaderView();
     const headerElement: HTMLElement = header.getViewElement();
-    const footer = new FooterView();
+    const footer: FooterView = new FooterView();
     const footerElement: HTMLElement = footer.getViewElement();
-    const main = new MainView();
+    const main: MainView = new MainView();
     const mainElement: HTMLElement = main.getViewElement();
 
     this.wrapper.addInnerElement(headerElement);

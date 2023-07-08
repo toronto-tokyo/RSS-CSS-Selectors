@@ -7,12 +7,11 @@ export function animateTargetElements(
   wrapperElement: HTMLElement,
   targetElementsSelector: string
 ): void {
-  const rightSelectedElements = wrapperElement.querySelectorAll(
-    `${targetElementsSelector}`
-  );
-  const keys = Object.keys(rightSelectedElements);
+  const rightSelectedElements: NodeListOf<Element> =
+    wrapperElement.querySelectorAll(`${targetElementsSelector}`);
+  const keys: string[] = Object.keys(rightSelectedElements);
   keys.forEach((key): void => {
-    const htmlElement = rightSelectedElements[+key] as HTMLElement;
+    const htmlElement: HTMLElement = rightSelectedElements[+key] as HTMLElement;
     htmlElement.dataset.class = "target";
   });
 }

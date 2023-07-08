@@ -4,6 +4,7 @@ import { HTMLView } from "./html-view/html-view";
 import { LevelsView } from "./levels-view/level-view";
 import { LEVELS_DATA } from "../../../data/levels-data";
 import { state } from "../../state/state";
+import { IElementCreator } from "../../util/element-creator/element-creator-types";
 
 const CSS_CLASSES = {
   onWrongAnswer: "wrong-answer__fields",
@@ -29,13 +30,13 @@ export class Checker {
 
   private setSelectedLevelAfterLoad(): void {
     window.addEventListener("load", () => {
-      const loadedIndex = state.getLevelIndex();
+      const loadedIndex: string = state.getLevelIndex();
       this.setLevelContent(+loadedIndex);
     });
   }
 
   private checkSelectorOnElement(): void {
-    const enterButton = this.cssView.getEnterButton();
+    const enterButton: HTMLElement | null = this.cssView.getEnterButton();
     if (enterButton) {
       enterButton.addEventListener("click", () => {
         this.checkSelector();
@@ -44,7 +45,7 @@ export class Checker {
   }
 
   private checkSelectorOnKeyBoardKey(): void {
-    window.addEventListener("keyup", (event) => {
+    window.addEventListener("keyup", (event: KeyboardEvent) => {
       if (event.key === CHECK_SELECTOR_ON_KEY) {
         this.checkSelector();
       }
@@ -52,23 +53,27 @@ export class Checker {
   }
 
   private checkSelector(): void {
-    const tableSurfaceElement = this.tableView.getTableSurface();
-    const inputFieldElement = this.cssView.getInputFieldElement();
+    const tableSurfaceElement: HTMLElement | null =
+      this.tableView.getTableSurface();
+    const inputFieldElement: HTMLInputElement | undefined =
+      this.cssView.getInputFieldElement();
     if (!tableSurfaceElement || !inputFieldElement) {
       throw new Error();
     }
-    const inputFieldValue = inputFieldElement.value;
-    const rightSelector = this.levelsView.getLevelRightAnswer();
+
+    const inputFieldValue: string = inputFieldElement.value;
+    const rightSelector: string = this.levelsView.getLevelRightAnswer();
 
     if (inputFieldValue.length && rightSelector) {
-      const userSelectedElements = tableSurfaceElement.querySelectorAll(
-        `${inputFieldValue}`
+      const userSelectedElements: NodeListOf<Element> =
+        tableSurfaceElement.querySelectorAll(`${inputFieldValue}`);
+      const rightSelectedElements: NodeListOf<Element> =
+        tableSurfaceElement.querySelectorAll(`${rightSelector}`);
+      const userSelectedElementsArray: Element[] =
+        Array.from(userSelectedElements);
+      const rightSelectedElementsArray: Element[] = Array.from(
+        rightSelectedElements
       );
-      const rightSelectedElements = tableSurfaceElement.querySelectorAll(
-        `${rightSelector}`
-      );
-      const userSelectedElementsArray = Array.from(userSelectedElements);
-      const rightSelectedElementsArray = Array.from(rightSelectedElements);
 
       this.compareAnswers(
         userSelectedElementsArray,
@@ -88,7 +93,7 @@ export class Checker {
     ) {
       this.contentFieldsElement.classList.add(CSS_CLASSES.onWrongAnswer);
     } else {
-      const checkedArr = userSelectedElementsArray.filter((el) =>
+      const checkedArr: Element[] = userSelectedElementsArray.filter((el) =>
         rightSelectedElementsArray.includes(el)
       );
       if (checkedArr.length === userSelectedElementsArray.length) {
@@ -103,8 +108,8 @@ export class Checker {
   }
 
   private setNewLevel(): void {
-    const index = state.getLevelIndex();
-    let newIndex = +index + 1;
+    const index: string = state.getLevelIndex();
+    let newIndex: number = +index + 1;
     if (newIndex >= LEVELS_DATA.length) {
       newIndex = 0;
       this.setLevelContent(newIndex);
@@ -115,14 +120,17 @@ export class Checker {
 
   private setLevelContent(newIndex: number): void {
     state.setCurrentLevelIndex(`${newIndex}`);
-    const targetLinkCreator = this.levelsView.getLinkElements().find((el) => {
-      const element = el.getElement();
-      if (!element) {
-        throw new Error();
-      }
-      return element.dataset.index === `${newIndex}`;
-    });
-    const targetLinkElement = targetLinkCreator?.getElement();
+    const targetLinkCreator: IElementCreator | undefined = this.levelsView
+      .getLinkElements()
+      .find((el) => {
+        const element: HTMLElement = el.getElement();
+        if (!element) {
+          throw new Error();
+        }
+        return element.dataset.index === `${newIndex}`;
+      });
+    const targetLinkElement: HTMLElement | undefined =
+      targetLinkCreator?.getElement();
     if (targetLinkElement) {
       this.levelsView.setSelectedLink(targetLinkElement);
     }
@@ -136,7 +144,8 @@ export class Checker {
   }
 
   private refreshAnimation(): void {
-    const htmlViewElement = this.htmlView.getContentFieldWrapElement();
+    const htmlViewElement: HTMLElement =
+      this.htmlView.getContentFieldWrapElement();
     const { contentFieldsElement } = this;
 
     contentFieldsElement.addEventListener("animationend", () => {

@@ -45,11 +45,13 @@ export class MainView extends View {
   }
 
   protected configureView(): void {
-    const contentWrapperCreator = this.createContentWrapper();
-    const contentWrapperElement = contentWrapperCreator.getElement();
+    const contentWrapperCreator: IElementCreator = this.createContentWrapper();
+    const contentWrapperElement: HTMLElement =
+      contentWrapperCreator.getElement();
 
     this.createLevelsView();
-    const levelsViewElement = this.levelsView?.getViewElement();
+    const levelsViewElement: HTMLElement | undefined =
+      this.levelsView?.getViewElement();
 
     if (contentWrapperElement && levelsViewElement) {
       this.viewElement.addInnerElement(contentWrapperElement);
@@ -60,7 +62,7 @@ export class MainView extends View {
 
   private createLevelsView(): void {
     if (this.tableView && this.cssView && this.htmlView) {
-      const levelsView = new LevelsView(
+      const levelsView: LevelsView = new LevelsView(
         this.tableView,
         this.cssView,
         this.htmlView
@@ -79,10 +81,14 @@ export class MainView extends View {
       textContent: "",
       callback: null,
     };
-    const contentWrapper = new ElementCreator(contentWrapperParams);
+    const contentWrapper: ElementCreator = new ElementCreator(
+      contentWrapperParams
+    );
 
-    const tableElement = this.tableView?.getViewElement();
-    const fieldsElement = this.contentFields?.getElement();
+    const tableElement: HTMLElement | undefined =
+      this.tableView?.getViewElement();
+    const fieldsElement: HTMLElement | undefined =
+      this.contentFields?.getElement();
     if (tableElement && fieldsElement) {
       contentWrapper.addInnerElement(tableElement);
       contentWrapper.addInnerElement(fieldsElement);
@@ -91,7 +97,7 @@ export class MainView extends View {
   }
 
   private createTable(): void {
-    const table = new TableView();
+    const table: TableView = new TableView();
     this.tableView = table;
   }
 
@@ -105,11 +111,13 @@ export class MainView extends View {
       textContent: "",
       callback: null,
     };
-    const fields = new ElementCreator(fieldsParams);
+    const fields: ElementCreator = new ElementCreator(fieldsParams);
     this.contentFields = fields;
 
-    const cssViewElement = this.cssView?.getContentFieldWrapElement();
-    const htmlViewElement = this.htmlView?.getContentFieldWrapElement();
+    const cssViewElement: HTMLElement | undefined =
+      this.cssView?.getContentFieldWrapElement();
+    const htmlViewElement: HTMLElement | undefined =
+      this.htmlView?.getContentFieldWrapElement();
     if (cssViewElement && htmlViewElement) {
       fields.addInnerElement(cssViewElement);
       fields.addInnerElement(htmlViewElement);
@@ -117,12 +125,12 @@ export class MainView extends View {
   }
 
   private createCssView(): void {
-    const cssView = new CssView();
+    const cssView: CssView = new CssView();
     this.cssView = cssView;
   }
 
   private createHtmlView(): void {
-    const htmlView = new HTMLView();
+    const htmlView: HTMLView = new HTMLView();
     this.htmlView = htmlView;
   }
 
@@ -134,7 +142,7 @@ export class MainView extends View {
       this.levelsView &&
       this.contentFields
     ) {
-      const checker = new Checker(
+      const checker: Checker = new Checker(
         this.tableView,
         this.cssView,
         this.htmlView,

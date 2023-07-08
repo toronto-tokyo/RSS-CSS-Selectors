@@ -1,5 +1,8 @@
 import "./html-view.css";
-import { IElementCreatorParam } from "../../../util/element-creator/element-creator-types";
+import {
+  IElementCreator,
+  IElementCreatorParam,
+} from "../../../util/element-creator/element-creator-types";
 import { ContentFieldsView } from "../content-fields-view/content-fields-view";
 import { clearWrapperElement } from "../functions";
 
@@ -44,15 +47,15 @@ export class HTMLView extends ContentFieldsView {
 
   public setContent(content: string): void {
     this.clearHtmlViewContentElement();
-    const htmlCode = document.createElement("pre");
+    const htmlCode: HTMLPreElement = document.createElement("pre");
     htmlCode.classList.add(...CSS_CLASSES.htmlCode);
     htmlCode.textContent = content;
     this.getContentField()?.addInnerElement(htmlCode);
   }
 
   private clearHtmlViewContentElement(): void {
-    const elementCreator = this.getContentField();
-    const element = elementCreator?.getElement();
+    const elementCreator: IElementCreator | null = this.getContentField();
+    const element: HTMLElement | undefined = elementCreator?.getElement();
     if (element) {
       clearWrapperElement(element);
     }

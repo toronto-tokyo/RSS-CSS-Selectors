@@ -45,8 +45,9 @@ export class FooterView extends View {
       target: "_blank",
       cssClass: CSS_CLASSES.gitHubLogo,
     };
-    const gitHubLinkCreator = new LinkCreator(gitHubLinkParams);
-    const gitHubLinkElement = gitHubLinkCreator.getLinkElement();
+    const gitHubLinkCreator: LinkCreator = new LinkCreator(gitHubLinkParams);
+    const gitHubLinkElement: HTMLAnchorElement =
+      gitHubLinkCreator.getLinkElement();
     this.viewElement.addInnerElement(gitHubLinkElement);
   }
 
@@ -57,8 +58,11 @@ export class FooterView extends View {
       cssClasses: CSS_CLASSES.applicationYear,
       callback: null,
     };
-    const applicationYearCreator = new ElementCreator(applicationYearParams);
-    const applicationYearElement = applicationYearCreator.getElement();
+    const applicationYearCreator: ElementCreator = new ElementCreator(
+      applicationYearParams
+    );
+    const applicationYearElement: HTMLElement =
+      applicationYearCreator.getElement();
     this.viewElement.addInnerElement(applicationYearElement);
   }
 
@@ -68,8 +72,8 @@ export class FooterView extends View {
       target: "_blank",
       cssClass: CSS_CLASSES.rssLogo,
     };
-    const rssLinkCreator = new LinkCreator(rssLinkParams);
-    const rssLinkElement = rssLinkCreator.getLinkElement();
+    const rssLinkCreator: LinkCreator = new LinkCreator(rssLinkParams);
+    const rssLinkElement: HTMLAnchorElement = rssLinkCreator.getLinkElement();
     this.viewElement.addInnerElement(rssLinkElement);
   }
 }

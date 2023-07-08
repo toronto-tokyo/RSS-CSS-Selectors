@@ -1,6 +1,9 @@
 import "./css-view.css";
 import ElementCreator from "../../../util/element-creator/element-creator";
-import { IElementCreatorParam } from "../../../util/element-creator/element-creator-types";
+import {
+  IElementCreator,
+  IElementCreatorParam,
+} from "../../../util/element-creator/element-creator-types";
 import { InputLineView } from "./input-line-view/input-line-view";
 import { ContentFieldsView } from "../content-fields-view/content-fields-view";
 
@@ -61,12 +64,12 @@ export class CssView extends ContentFieldsView {
   protected createContentField(): void {
     super.createContentField();
 
-    const inputLine = new InputLineView();
+    const inputLine: InputLineView = new InputLineView();
     this.inputLine = inputLine;
     this.enterButton = inputLine.getEnterButton();
-    const inputLineElement = inputLine.getElement();
+    const inputLineElement: HTMLElement = inputLine.getElement();
 
-    const contentFieldCreator = this.getContentField();
+    const contentFieldCreator: IElementCreator | null = this.getContentField();
     if (contentFieldCreator) {
       contentFieldCreator.addInnerElement(inputLineElement);
       contentFieldCreator.addInnerElement(this.createHelpButton());
@@ -85,15 +88,18 @@ export class CssView extends ContentFieldsView {
       callback: {
         event: "click",
         callback: () => {
-          const inputFieldElement = this.inputLine?.getInputFieldElement();
+          const inputFieldElement: HTMLInputElement | undefined =
+            this.inputLine?.getInputFieldElement();
           if (inputFieldElement) {
             inputFieldElement.value = this.helpAnswer;
           }
         },
       },
     };
-    const buttonElementCreator = new ElementCreator(buttonElementParam);
-    const buttonElement = buttonElementCreator.getElement();
+    const buttonElementCreator: ElementCreator = new ElementCreator(
+      buttonElementParam
+    );
+    const buttonElement: HTMLElement = buttonElementCreator.getElement();
     return buttonElement;
   }
 }

@@ -52,7 +52,7 @@ export class InputLineView {
   }
 
   private createInputField(): HTMLInputElement {
-    const inputField = document.createElement("input");
+    const inputField: HTMLInputElement = document.createElement("input");
     inputField.classList.add(...CSS_CLASSES.inputField);
     inputField.setAttribute("type", INPUT_FIELD_ATTRIBUTES.type);
     inputField.setAttribute("placeholder", INPUT_FIELD_ATTRIBUTES.placeHolder);
@@ -68,7 +68,7 @@ export class InputLineView {
       callback: null,
     };
 
-    const inputField = new ElementCreator(inputFieldParams);
+    const inputField: ElementCreator = new ElementCreator(inputFieldParams);
     this.element.addInnerElement(inputField);
     return inputField.getElement();
   }

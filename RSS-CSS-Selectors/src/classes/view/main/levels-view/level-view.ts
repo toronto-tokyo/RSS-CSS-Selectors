@@ -76,7 +76,9 @@ export class LevelsView extends View {
       textContent: TEXT_CONTENT.title,
       callback: null,
     };
-    const levelsTitleCreator = new ElementCreator(levelsTitleParam);
+    const levelsTitleCreator: ElementCreator = new ElementCreator(
+      levelsTitleParam
+    );
     this.viewElement.addInnerElement(levelsTitleCreator);
   }
 
@@ -96,8 +98,10 @@ export class LevelsView extends View {
           },
         },
       };
-      const levelLinkCreator = new ElementCreator(levelLinkParam);
-      const levelLinkElement = levelLinkCreator.getElement();
+      const levelLinkCreator: ElementCreator = new ElementCreator(
+        levelLinkParam
+      );
+      const levelLinkElement: HTMLElement = levelLinkCreator.getElement();
       levelLinkElement.dataset.index = `${index}`;
       this.linkElements.push(levelLinkCreator);
       this.viewElement.addInnerElement(levelLinkCreator);
@@ -106,7 +110,7 @@ export class LevelsView extends View {
 
   public setSelectedLink(target: HTMLElement): void {
     if (target.className.includes(`${CSS_CLASSES.levelLink.flat(1)}`)) {
-      const levelIndex = target.dataset.index;
+      const levelIndex: string | undefined = target.dataset.index;
       state.setCurrentLevelIndex(levelIndex);
       this.removeSelectedLinkStatus();
       target.classList.add(...CSS_CLASSES.selectedLink);
@@ -115,7 +119,7 @@ export class LevelsView extends View {
 
   private removeSelectedLinkStatus(): void {
     this.linkElements.forEach((el) => {
-      const element = el.getElement();
+      const element: HTMLElement = el.getElement();
       element?.classList.remove(...CSS_CLASSES.selectedLink);
     });
   }

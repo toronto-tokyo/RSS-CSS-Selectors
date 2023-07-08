@@ -31,7 +31,7 @@ export class TableView extends View {
   }
 
   public getTableSurface(): HTMLElement | null {
-    const element = this.tableSurface?.getElement();
+    const element: HTMLElement | undefined = this.tableSurface?.getElement();
     if (element) {
       return element;
     }
@@ -50,10 +50,10 @@ export class TableView extends View {
     if (!this.tableSurface) {
       throw new Error();
     }
-    const tableSurfaceElement = this.tableSurface.getElement();
+    const tableSurfaceElement: HTMLElement = this.tableSurface.getElement();
     clearWrapperElement(tableSurfaceElement);
     content.forEach((item: ICodeForTable) => {
-      const itemElement = createContent(item);
+      const itemElement: string | HTMLElement = createContent(item);
       if (typeof itemElement !== "string") {
         this.tableSurface?.addInnerElement(itemElement);
       }

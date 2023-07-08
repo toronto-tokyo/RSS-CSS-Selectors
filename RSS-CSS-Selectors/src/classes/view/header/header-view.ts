@@ -32,7 +32,7 @@ export class HeaderView extends View {
       callback: null,
     };
 
-    const h1Element = new ElementCreator(h1Param);
+    const h1Element: ElementCreator = new ElementCreator(h1Param);
     this.viewElement.addInnerElement(h1Element);
   }
 }
