@@ -1,3 +1,4 @@
+import { CustomTagView } from "../custom-tag-view";
 import "./assets/ham-slice.svg";
 
 const IMAGE_LINK = "./assets/ham-slice.svg";
@@ -8,17 +9,14 @@ const CSS_STYLES = {
   background: `url(${IMAGE_LINK}) 50%/contain no-repeat`,
   width: "80px",
   height: "70px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 };
 
-export class HamView extends HTMLElement {
+export class HamView extends CustomTagView {
   constructor(
     public elementClass: string | undefined,
     public elementId: string | undefined
   ) {
-    super();
+    super(CSS_STYLES.background, CSS_STYLES.width, CSS_STYLES.height);
     this.configureView(elementClass, elementId);
   }
 
@@ -26,12 +24,6 @@ export class HamView extends HTMLElement {
     elementClass: string | undefined,
     elementId: string | undefined
   ): void {
-    this.style.background = CSS_STYLES.background;
-    this.style.width = CSS_STYLES.width;
-    this.style.height = CSS_STYLES.height;
-    this.style.display = CSS_STYLES.display;
-    this.style.alignItems = CSS_STYLES.alignItems;
-    this.style.justifyContent = CSS_STYLES.justifyContent;
     if (elementClass) {
       this.className = elementClass;
     }
