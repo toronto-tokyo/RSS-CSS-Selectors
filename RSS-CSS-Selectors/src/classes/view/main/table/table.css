@@ -1,0 +1,78 @@
+.table {
+  transform: translate3d(0,0,0);
+  perspective: 400px;
+}
+
+.table__surface {
+  background-color: rgb(222, 139, 51);
+  width: 500px;
+  margin: 50px auto 0;
+  height: 150px;
+  transform: rotateX(20deg);
+  transform-origin: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.table__side {
+  background-color: rgb(146, 85, 19);
+  width: 500px;
+  margin: 0px auto 20px;
+  height: 20px;
+  transform: rotateX(-20deg);
+  transform-origin: top;
+  position: relative;
+}
+
+.table__side::before,
+.table__side::after{
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 10px;
+  bottom: -10px;
+  background-color: rgb(115, 68, 17);
+}
+
+.table__side::before{
+  left: 40px;
+}
+
+.table__side::after{
+  right: 40px;
+}
+
+bread-slice[data-class="target"],
+cheese-slice[data-class="target"],
+ham-slice[data-class="target"] {
+  position: relative;
+  animation-name: circle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transform: rotate(0deg);
+  transform-origin: center bottom;
+}
+
+@keyframes circle {
+  from {
+    transform: rotate(0deg);
+  }
+
+  25%{
+    transform: rotate(-15deg);
+  }
+
+  50%{
+    transform: rotate(0deg);
+  }
+  
+  75%{
+    transform: rotate(15deg);
+  }
+  
+  100%{
+    transform: rotate(0deg);
+  }
+}

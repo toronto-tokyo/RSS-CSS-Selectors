@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@element-creator/*": ["classes/util/element-creator/*"],
+      "@link-creator/*": ["classes/util/link-creator/*"],
+      "@state/*": ["classes/state/*"],
+      "@view/*": ["classes/view/*"],
+      "@header-view/*": ["classes/view/header/*"],
+      "@footer-view/*": ["classes/view/footer/*"],
+      "@main-view/*": ["classes/view/main/*"],
+      "@content-fields-view/*": ["classes/view/main/content-fields-view/*"],
+      "@number-line-view/*": ["classes/view/main/content-fields-view/numbers-line-view/*"],
+      "@input-line-view/*": ["classes/view/main/css-view/input-line-view/*"],
+      "@css-view/*": ["classes/view/main/css-view/*"],
+      "@html-view/*": ["classes/view/main/html-view/*"],
+      "@table-view/*": ["classes/view/main/table/*"],
+      "@levels-data/*": ["data/*"],
+      "@custom-tags-view/*": ["classes/view/main/table/custom-tags/*"],
+      "@levels-view/*": ["classes/view/main/levels-view/*"],
+      "@app/*": ["classes/app/*"]
+    }
+  },
+}

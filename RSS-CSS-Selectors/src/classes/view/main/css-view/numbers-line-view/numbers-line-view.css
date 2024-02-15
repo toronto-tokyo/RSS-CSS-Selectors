@@ -1,0 +1,9 @@
+.view__numbers-line {
+  background-color: rgba(245, 233, 178, 0.9);
+  width: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.1em;
+  padding: 4.5px 0;
+}
