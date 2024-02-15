@@ -1,0 +1,35 @@
+.levels-view {
+  background-color: rgba(128, 64, 48, 0.9);
+  flex: 25%;
+  padding: 20px 0 0 0;
+}
+
+.levels-view__link {
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0 0 0 30px;
+  margin: 10px 0;
+}
+
+.levels-view__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.levels-view__title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
+
+.html-code {
+  line-height: 18.4px;
+  font-weight: 600;
+}
+
+.selected {
+  text-decoration: underline;
+}

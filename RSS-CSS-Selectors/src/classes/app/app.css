@@ -1,0 +1,18 @@
+html,
+body{
+  height: 100%;
+}
+
+body {
+  background: url(./assets/kitchen.jpg) 50%/auto 100% no-repeat;
+}
+
+.wrapper{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main{
+  flex: 1 1 auto;
+}
